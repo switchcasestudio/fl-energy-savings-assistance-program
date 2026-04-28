@@ -11,7 +11,7 @@ function Footer() {
           <span className={styles.seal} aria-hidden="true">
             <Shield />
           </span>
-          © {year} Florida Energy Savings Assistance Program
+          © {year} Florida Energy Assistance
         </div>
         <div>Florida · 754-799-8995</div>
       </div>

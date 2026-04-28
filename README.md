@@ -1,4 +1,4 @@
-# Florida Energy Savings Assistance Program - Landing Page
+# Florida Energy Assistance - Landing Page
 
 Single-page React landing page built with Vite.
 
