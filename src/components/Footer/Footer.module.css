@@ -1,0 +1,36 @@
+.footer {
+  background: var(--paper);
+  border-top: 1px solid var(--rule);
+  padding-block: 2.5rem;
+  color: var(--ink-soft);
+  font-size: 0.875rem;
+}
+
+.inner {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.seal {
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--rule-strong);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--seal);
+}
+
+.seal svg {
+  width: 14px;
+  height: 14px;
+}

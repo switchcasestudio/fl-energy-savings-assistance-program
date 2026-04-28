@@ -1,0 +1,127 @@
+.card {
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  padding: 2rem 1.75rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease,
+    opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 48px -28px rgba(10, 37, 64, 0.3);
+  border-color: var(--rule-strong);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.875rem;
+  color: var(--ink-soft);
+  letter-spacing: 0.08em;
+}
+
+.title {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--rule-strong);
+  display: grid;
+  place-items: center;
+  color: var(--seal);
+  background: var(--seal-soft);
+}
+
+.icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.rows {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.75rem;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-block: 0.875rem;
+  border-bottom: 1px dashed var(--rule);
+  gap: 1rem;
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.rowLabel {
+  font-size: 0.875rem;
+  color: var(--ink-soft);
+  letter-spacing: 0.01em;
+}
+
+.rowValue {
+  font-family: var(--sans);
+  font-weight: 600;
+  color: var(--ink);
+  font-size: 0.9375rem;
+  text-align: right;
+}
+
+.pillars {
+  margin-top: auto;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule);
+  display: grid;
+  gap: 0.625rem;
+}
+
+.pillar {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 0.875rem;
+  color: var(--ink);
+}
+
+.pillarLabel {
+  color: var(--ink-soft);
+  letter-spacing: 0.02em;
+}
+
+.pillarNum {
+  font-family: var(--serif);
+  font-size: 1.625rem;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+
+.pillarGrant .pillarNum {
+  color: var(--gold);
+}
