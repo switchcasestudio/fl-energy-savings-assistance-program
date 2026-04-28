@@ -37,7 +37,7 @@ function Hero() {
               <span className={styles.metaLabel}>Financing available</span>
             </div>
             <div className={styles.metaItem}>
-              <span className={styles.metaNum}>5</span>
+              <span className={styles.metaNum}>3</span>
               <span className={styles.metaLabel}>Tailored programs</span>
             </div>
           </div>
