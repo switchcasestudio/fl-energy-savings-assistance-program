@@ -80,7 +80,7 @@ h4 {
   background: var(--rule-strong);
 }
 
-/* Reveal-on-scroll utility — used by useReveal hook */
+/* Reveal-on-scroll utility - used by useReveal hook */
 .io-hidden {
   opacity: 0;
   transform: translateY(20px);

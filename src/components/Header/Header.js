@@ -8,14 +8,14 @@ function Header() {
         <a
           href="#"
           className={styles.brand}
-          aria-label="Energy Efficiency Saving Foundation home"
+          aria-label="Florida Energy Savings Assistance Program home"
         >
           <span className={styles.seal} aria-hidden="true">
             <ShieldCheck />
           </span>
           <span className={styles.text}>
-            <span className={styles.name}>Energy Efficiency Saving Foundation</span>
-            <span className={styles.sub}>Florida · Est. Program</span>
+            <span className={styles.name}>Florida Energy Savings Assistance Program</span>
+            
           </span>
         </a>
         <a href="#contact" className={styles.cta}>

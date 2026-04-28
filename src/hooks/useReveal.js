@@ -7,7 +7,7 @@ import { useEffect, useRef } from 'react';
  * @param {object} options
  * @param {number} [options.threshold=0.15]
  * @param {string} [options.rootMargin='0px 0px -40px 0px']
- * @param {number} [options.delay=0] — transition delay in ms
+ * @param {number} [options.delay=0] - transition delay in ms
  * @returns {React.RefObject}
  */
 export default function useReveal({

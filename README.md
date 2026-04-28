@@ -1,4 +1,4 @@
-# Energy Efficiency Saving Foundation — Landing Page
+# Florida Energy Savings Assistance Program - Landing Page
 
 Single-page React landing page built with Vite.
 

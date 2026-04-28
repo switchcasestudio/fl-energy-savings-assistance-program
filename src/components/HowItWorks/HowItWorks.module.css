@@ -40,10 +40,10 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0;
+  gap: 10px;
 }
 
-/* Vertical rules between Step children — keeps Step component dumb */
+/* Vertical rules between Step children - keeps Step component dumb */
 .grid > *:not(:last-child) {
   border-right: 1px solid var(--rule);
 }

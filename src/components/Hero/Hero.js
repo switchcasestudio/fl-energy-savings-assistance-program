@@ -20,7 +20,7 @@ function Hero() {
           </h1>
           <p ref={ledeRef} className={styles.lede}>
             Five programs that help Florida homeowners achieve the projects they
-            want — with $0 down, 100% financing, and grants up to $8,000.
+            want - with $0 down, 100% financing, and grants up to $8,000.
           </p>
 
           <div ref={metaRef} className={styles.meta}>
@@ -45,9 +45,9 @@ function Hero() {
 
         <figure ref={figureRef} className={styles.figure} aria-hidden="true">
           <div className={styles.img} />
-          <span className={styles.stamp}>Program Verified</span>
+          {/* <span className={styles.stamp}>Program Verified</span> */}
           <figcaption className={styles.caption}>
-            Solar, HVAC, windows &amp; insulation — all eligible upgrades.
+            Solar, HVAC, windows &amp; insulation - all eligible upgrades.
           </figcaption>
         </figure>
       </div>
