@@ -23,7 +23,7 @@ function CTA() {
           </p>
         </div>
 
-        <aside ref={rightRef} className={styles.panel}>
+        {/* <aside ref={rightRef} className={styles.panel}>
           <div className={styles.panelEyebrow}>Call to check availability</div>
           <a href={PHONE_HREF} className={styles.phone}>
             {PHONE_DISPLAY}
@@ -33,7 +33,7 @@ function CTA() {
             Call now
           </a>
           <p className={styles.small}>Mon–Fri, 9 AM – 6 PM ET · No obligation</p>
-        </aside>
+        </aside> */}
       </div>
     </section>
   );
