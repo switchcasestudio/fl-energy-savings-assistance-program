@@ -8,7 +8,6 @@ function HowItWorks() {
       <div className="container">
         <div className={styles.head}>
           <h2 className={styles.headTitle}>How does it work?</h2>
-          <span className={styles.headNum}>ii. Process</span>
         </div>
 
         <div className={styles.grid}>

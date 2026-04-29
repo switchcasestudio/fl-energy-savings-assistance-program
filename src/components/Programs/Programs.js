@@ -10,7 +10,6 @@ function Programs() {
           <h2 className={styles.headTitle}>
             Three programs. One purpose: home upgrades you can actually afford.
           </h2>
-          <span className={styles.headNum}>i. Programs</span>
         </div>
 
         <div className={styles.grid}>
