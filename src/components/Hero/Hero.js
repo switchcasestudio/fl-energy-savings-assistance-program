@@ -19,8 +19,8 @@ function Hero() {
             Upgrade your home <em>with our programs.</em>
           </h1>
           <p ref={ledeRef} className={styles.lede}>
-            Three programs that help Florida homeowners achieve the projects they
-            want - with $0 down, 100% financing, and grants up to $8,000.
+            Three programs that help Florida homeowners achieve the projects
+            they want - with $0 down, 100% financing, and grants up to $8,000.
           </p>
 
           <div ref={metaRef} className={styles.meta}>
