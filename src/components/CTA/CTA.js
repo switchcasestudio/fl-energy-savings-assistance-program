@@ -1,9 +1,6 @@
-import { Phone } from '../icons/Icons.js';
+import ContactForm from '../ContactForm/ContactForm.js';
 import useReveal from '../../hooks/useReveal.js';
 import styles from './CTA.module.css';
-
-const PHONE_DISPLAY = '754-799-8995';
-const PHONE_HREF = 'tel:7547998995';
 
 function CTA() {
   const leftRef = useReveal({ delay: 0 });
@@ -12,28 +9,37 @@ function CTA() {
   return (
     <section className={styles.cta} id="contact">
       <div className={`container ${styles.inner}`}>
-        <div ref={leftRef}>
+        <div ref={leftRef} className={styles.copy}>
           <span className={`eyebrow ${styles.eyebrow}`}>Get Started</span>
           <h2 className={styles.title}>
             Want to upgrade your <em>Florida home?</em> We're here to help.
           </h2>
           <p className={styles.sub}>
-            Speak with a program specialist to confirm availability in your area
-            and find the option that fits your project.
+            Tell us a little about your project and a program specialist will
+            reach out within one business day to confirm availability and find
+            the option that fits.
           </p>
+
+          <ul className={styles.bullets}>
+            <li>
+              <span className={styles.bulletDot} aria-hidden="true" />
+              No obligation — eligibility check only
+            </li>
+            <li>
+              <span className={styles.bulletDot} aria-hidden="true" />
+              Response within one business day
+            </li>
+            <li>
+              <span className={styles.bulletDot} aria-hidden="true" />
+              Florida homeowners only
+            </li>
+          </ul>
         </div>
 
-        {/* <aside ref={rightRef} className={styles.panel}>
-          <div className={styles.panelEyebrow}>Call to check availability</div>
-          <a href={PHONE_HREF} className={styles.phone}>
-            {PHONE_DISPLAY}
-          </a>
-          <a href={PHONE_HREF} className={styles.btn}>
-            <Phone />
-            Call now
-          </a>
-          <p className={styles.small}>Mon–Fri, 9 AM – 6 PM ET · No obligation</p>
-        </aside> */}
+        <aside ref={rightRef} className={styles.panel}>
+          <div className={styles.panelEyebrow}>Check your eligibility</div>
+          <ContactForm />
+        </aside>
       </div>
     </section>
   );

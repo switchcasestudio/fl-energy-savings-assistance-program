@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Five programs that help Florida homeowners achieve the projects they want. $0 down, 100% financing, grants up to $8,000."
+      content="Three programs that help Florida homeowners achieve the projects they want. $0 down, 100% financing, grants up to $8,000."
     />
     <title>Florida Energy Assistance</title>
 
@@ -18,6 +18,26 @@
     />
   </head>
   <body>
+    <!--
+      Static form for Netlify Forms detection.
+      Netlify scans HTML at build-time; React forms render at runtime, so a hidden
+      static copy with matching field names is required for SPA form handling.
+      Do NOT remove. The actual submission happens via the React component.
+    -->
+    <form
+      name="contact"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      hidden
+    >
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="zip" />
+      <input type="text" name="program" />
+      <textarea name="message"></textarea>
+      <input type="text" name="bot-field" />
+    </form>
+
     <div id="root"></div>
     <script type="module" src="/src/main.js"></script>
   </body>

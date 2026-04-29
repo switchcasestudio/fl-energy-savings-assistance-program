@@ -1,0 +1,176 @@
+{
+  "name": "EESF — Monthly Client Insights",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 9 1 * *"
+            }
+          ]
+        }
+      },
+      "id": "schedule-trigger",
+      "name": "Monthly Schedule (1st @ 9am)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [240, 300],
+      "notes": "Fires on the 1st of every month at 09:00. Adjust timezone in n8n settings."
+    },
+    {
+      "parameters": {
+        "jsCode": "// Compute previous month's date range in YYYY-MM-DD format.\nconst now = new Date();\nconst end = new Date(now.getFullYear(), now.getMonth(), 0); // last day of prev month\nconst start = new Date(now.getFullYear(), now.getMonth() - 1, 1); // first day of prev month\n\nconst fmt = (d) => d.toISOString().slice(0, 10);\nconst monthLabel = start.toLocaleString('en-US', { month: 'long', year: 'numeric' });\n\nreturn [{\n  json: {\n    startDate: fmt(start),\n    endDate: fmt(end),\n    monthLabel,\n  }\n}];"
+      },
+      "id": "date-range",
+      "name": "Compute Date Range",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "url": "=https://analyticsdata.googleapis.com/v1beta/properties/{{ $env.GA4_PROPERTY_ID }}:runReport",
+        "method": "POST",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"dateRanges\": [{\n    \"startDate\": \"{{ $json.startDate }}\",\n    \"endDate\": \"{{ $json.endDate }}\"\n  }],\n  \"metrics\": [\n    { \"name\": \"sessions\" },\n    { \"name\": \"activeUsers\" },\n    { \"name\": \"newUsers\" },\n    { \"name\": \"averageSessionDuration\" },\n    { \"name\": \"bounceRate\" }\n  ],\n  \"dimensions\": [\n    { \"name\": \"sessionDefaultChannelGroup\" }\n  ],\n  \"orderBys\": [{\n    \"metric\": { \"metricName\": \"sessions\" },\n    \"desc\": true\n  }],\n  \"limit\": 10\n}",
+        "options": {}
+      },
+      "id": "ga4-traffic",
+      "name": "GA4 — Traffic by Channel",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [680, 200],
+      "notes": "Requires Google API credential with Analytics Data API scope. Set GA4_PROPERTY_ID in n8n env vars."
+    },
+    {
+      "parameters": {
+        "url": "=https://analyticsdata.googleapis.com/v1beta/properties/{{ $env.GA4_PROPERTY_ID }}:runReport",
+        "method": "POST",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"dateRanges\": [{\n    \"startDate\": \"{{ $('Compute Date Range').item.json.startDate }}\",\n    \"endDate\": \"{{ $('Compute Date Range').item.json.endDate }}\"\n  }],\n  \"metrics\": [\n    { \"name\": \"eventCount\" }\n  ],\n  \"dimensions\": [\n    { \"name\": \"eventName\" }\n  ],\n  \"dimensionFilter\": {\n    \"filter\": {\n      \"fieldName\": \"eventName\",\n      \"stringFilter\": { \"value\": \"form_submission\" }\n    }\n  }\n}",
+        "options": {}
+      },
+      "id": "ga4-conversions",
+      "name": "GA4 — Form Submissions",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [680, 360]
+    },
+    {
+      "parameters": {
+        "url": "=https://analyticsdata.googleapis.com/v1beta/properties/{{ $env.GA4_PROPERTY_ID }}:runReport",
+        "method": "POST",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"dateRanges\": [{\n    \"startDate\": \"{{ $('Compute Date Range').item.json.startDate }}\",\n    \"endDate\": \"{{ $('Compute Date Range').item.json.endDate }}\"\n  }],\n  \"metrics\": [{ \"name\": \"sessions\" }],\n  \"dimensions\": [{ \"name\": \"deviceCategory\" }]\n}",
+        "options": {}
+      },
+      "id": "ga4-devices",
+      "name": "GA4 — Device Split",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [680, 520]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.netlify.com/api/v1/sites/{{ $env.NETLIFY_SITE_ID }}/forms",
+        "method": "GET",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $env.NETLIFY_PAT }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "netlify-forms",
+      "name": "Netlify — Form Submissions",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [680, 680],
+      "notes": "Set NETLIFY_PAT (personal access token) and NETLIFY_SITE_ID in n8n env vars."
+    },
+    {
+      "parameters": {
+        "jsCode": "// Aggregate all data sources into a clean report payload.\nconst dateRange = $('Compute Date Range').item.json;\nconst trafficRows = $('GA4 — Traffic by Channel').item.json.rows || [];\nconst conversionRows = $('GA4 — Form Submissions').item.json.rows || [];\nconst deviceRows = $('GA4 — Device Split').item.json.rows || [];\n\n// Total sessions across channels\nconst totalSessions = trafficRows.reduce(\n  (sum, r) => sum + Number(r.metricValues[0].value),\n  0\n);\nconst totalUsers = trafficRows.reduce(\n  (sum, r) => sum + Number(r.metricValues[1].value),\n  0\n);\n\n// Top 5 channels\nconst topChannels = trafficRows.slice(0, 5).map(r => ({\n  channel: r.dimensionValues[0].value,\n  sessions: Number(r.metricValues[0].value),\n  users: Number(r.metricValues[1].value),\n}));\n\n// Form submissions from GA4\nconst formSubmissionsGA = conversionRows.length\n  ? Number(conversionRows[0].metricValues[0].value)\n  : 0;\n\n// Device split\nconst deviceSplit = deviceRows.map(r => ({\n  device: r.dimensionValues[0].value,\n  sessions: Number(r.metricValues[0].value),\n}));\n\n// Conversion rate\nconst conversionRate = totalSessions > 0\n  ? ((formSubmissionsGA / totalSessions) * 100).toFixed(2)\n  : '0.00';\n\nreturn [{\n  json: {\n    monthLabel: dateRange.monthLabel,\n    startDate: dateRange.startDate,\n    endDate: dateRange.endDate,\n    totalSessions,\n    totalUsers,\n    formSubmissionsGA,\n    conversionRate,\n    topChannels,\n    deviceSplit,\n  }\n}];"
+      },
+      "id": "aggregate",
+      "name": "Aggregate Report Data",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [920, 440]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Render an HTML email body for the client.\nconst d = $input.first().json;\n\nconst channelRows = d.topChannels.map(c =>\n  `<tr><td style=\"padding:8px 12px;border-bottom:1px solid #E2DCC9;\">${c.channel}</td><td style=\"padding:8px 12px;border-bottom:1px solid #E2DCC9;text-align:right;\">${c.sessions.toLocaleString()}</td><td style=\"padding:8px 12px;border-bottom:1px solid #E2DCC9;text-align:right;\">${c.users.toLocaleString()}</td></tr>`\n).join('');\n\nconst deviceRows = d.deviceSplit.map(dev =>\n  `<tr><td style=\"padding:8px 12px;border-bottom:1px solid #E2DCC9;\">${dev.device}</td><td style=\"padding:8px 12px;border-bottom:1px solid #E2DCC9;text-align:right;\">${dev.sessions.toLocaleString()}</td></tr>`\n).join('');\n\nconst html = `\n<div style=\"font-family:Georgia,serif;background:#F7F4EC;padding:32px;color:#0A2540;\">\n  <div style=\"max-width:640px;margin:0 auto;background:#FBFAF5;padding:40px;border-radius:8px;border:1px solid #E2DCC9;\">\n    <p style=\"font-family:Inter,Arial,sans-serif;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#4A6280;margin:0 0 8px;\">Monthly Insights</p>\n    <h1 style=\"font-size:32px;margin:0 0 24px;font-weight:500;letter-spacing:-0.015em;\">${d.monthLabel}</h1>\n    <p style=\"font-family:Inter,Arial,sans-serif;font-size:14px;color:#4A6280;margin:0 0 32px;\">Reporting period: ${d.startDate} → ${d.endDate}</p>\n\n    <div style=\"display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px;\">\n      <div style=\"background:#fff;padding:20px;border:1px solid #E2DCC9;border-radius:6px;\">\n        <p style=\"font-family:Inter,Arial,sans-serif;font-size:12px;color:#4A6280;margin:0 0 4px;\">Total Sessions</p>\n        <p style=\"font-size:28px;margin:0;font-weight:500;\">${d.totalSessions.toLocaleString()}</p>\n      </div>\n      <div style=\"background:#fff;padding:20px;border:1px solid #E2DCC9;border-radius:6px;\">\n        <p style=\"font-family:Inter,Arial,sans-serif;font-size:12px;color:#4A6280;margin:0 0 4px;\">Active Users</p>\n        <p style=\"font-size:28px;margin:0;font-weight:500;\">${d.totalUsers.toLocaleString()}</p>\n      </div>\n      <div style=\"background:#fff;padding:20px;border:1px solid #E2DCC9;border-radius:6px;\">\n        <p style=\"font-family:Inter,Arial,sans-serif;font-size:12px;color:#4A6280;margin:0 0 4px;\">Form Submissions</p>\n        <p style=\"font-size:28px;margin:0;font-weight:500;color:#B8893C;\">${d.formSubmissionsGA}</p>\n      </div>\n      <div style=\"background:#fff;padding:20px;border:1px solid #E2DCC9;border-radius:6px;\">\n        <p style=\"font-family:Inter,Arial,sans-serif;font-size:12px;color:#4A6280;margin:0 0 4px;\">Conversion Rate</p>\n        <p style=\"font-size:28px;margin:0;font-weight:500;\">${d.conversionRate}%</p>\n      </div>\n    </div>\n\n    <h2 style=\"font-size:20px;margin:0 0 16px;font-weight:500;\">Top traffic sources</h2>\n    <table style=\"width:100%;border-collapse:collapse;font-family:Inter,Arial,sans-serif;font-size:14px;margin-bottom:32px;\">\n      <thead>\n        <tr style=\"background:#F7F4EC;\">\n          <th style=\"padding:10px 12px;text-align:left;font-size:12px;color:#4A6280;text-transform:uppercase;letter-spacing:0.05em;\">Channel</th>\n          <th style=\"padding:10px 12px;text-align:right;font-size:12px;color:#4A6280;text-transform:uppercase;letter-spacing:0.05em;\">Sessions</th>\n          <th style=\"padding:10px 12px;text-align:right;font-size:12px;color:#4A6280;text-transform:uppercase;letter-spacing:0.05em;\">Users</th>\n        </tr>\n      </thead>\n      <tbody>${channelRows}</tbody>\n    </table>\n\n    <h2 style=\"font-size:20px;margin:0 0 16px;font-weight:500;\">Device breakdown</h2>\n    <table style=\"width:100%;border-collapse:collapse;font-family:Inter,Arial,sans-serif;font-size:14px;\">\n      <thead>\n        <tr style=\"background:#F7F4EC;\">\n          <th style=\"padding:10px 12px;text-align:left;font-size:12px;color:#4A6280;text-transform:uppercase;letter-spacing:0.05em;\">Device</th>\n          <th style=\"padding:10px 12px;text-align:right;font-size:12px;color:#4A6280;text-transform:uppercase;letter-spacing:0.05em;\">Sessions</th>\n        </tr>\n      </thead>\n      <tbody>${deviceRows}</tbody>\n    </table>\n\n    <p style=\"font-family:Inter,Arial,sans-serif;font-size:12px;color:#4A6280;margin:32px 0 0;text-align:center;\">Generated automatically by n8n.</p>\n  </div>\n</div>`;\n\nreturn [{ json: { html, subject: `Monthly Insights — ${d.monthLabel}`, ...d } }];"
+      },
+      "id": "render-email",
+      "name": "Render Email HTML",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1140, 440]
+    },
+    {
+      "parameters": {
+        "fromEmail": "={{ $env.REPORT_FROM_EMAIL }}",
+        "toEmail": "={{ $env.CLIENT_EMAIL }}",
+        "subject": "={{ $json.subject }}",
+        "html": "={{ $json.html }}",
+        "options": {}
+      },
+      "id": "send-email",
+      "name": "Email Client",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [1360, 440],
+      "notes": "Configure SMTP credential. Set CLIENT_EMAIL and REPORT_FROM_EMAIL in n8n env vars."
+    }
+  ],
+  "connections": {
+    "Monthly Schedule (1st @ 9am)": {
+      "main": [[{ "node": "Compute Date Range", "type": "main", "index": 0 }]]
+    },
+    "Compute Date Range": {
+      "main": [[
+        { "node": "GA4 — Traffic by Channel", "type": "main", "index": 0 },
+        { "node": "GA4 — Form Submissions", "type": "main", "index": 0 },
+        { "node": "GA4 — Device Split", "type": "main", "index": 0 },
+        { "node": "Netlify — Form Submissions", "type": "main", "index": 0 }
+      ]]
+    },
+    "GA4 — Traffic by Channel": {
+      "main": [[{ "node": "Aggregate Report Data", "type": "main", "index": 0 }]]
+    },
+    "GA4 — Form Submissions": {
+      "main": [[{ "node": "Aggregate Report Data", "type": "main", "index": 0 }]]
+    },
+    "GA4 — Device Split": {
+      "main": [[{ "node": "Aggregate Report Data", "type": "main", "index": 0 }]]
+    },
+    "Netlify — Form Submissions": {
+      "main": [[{ "node": "Aggregate Report Data", "type": "main", "index": 0 }]]
+    },
+    "Aggregate Report Data": {
+      "main": [[{ "node": "Render Email HTML", "type": "main", "index": 0 }]]
+    },
+    "Render Email HTML": {
+      "main": [[{ "node": "Email Client", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}
