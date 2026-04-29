@@ -13,7 +13,6 @@ function Footer() {
           </span>
           © {year} Florida Energy Assistance
         </div>
-        {/* <div>Florida · 754-799-8995</div> */}
       </div>
     </footer>
   );
