@@ -32,6 +32,54 @@
   opacity: 0.7;
 }
 
+.phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-parchment, #f7f4ec);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  transition: color 160ms ease;
+}
+
+.phone:hover,
+.phone:focus-visible {
+  color: var(--color-gold, #b8893c);
+  text-decoration: none;
+}
+
+.phone svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.phoneNumber {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.phoneHours {
+  opacity: 0.7;
+  font-size: 12px;
+  padding-left: 8px;
+  border-left: 1px solid rgba(247, 244, 236, 0.2);
+  margin-left: 4px;
+}
+
+/* Hide hours on small screens, keep number tappable */
+@media (max-width: 640px) {
+  .phoneHours {
+    display: none;
+  }
+  .phone svg {
+    width: 13px;
+    height: 13px;
+  }
+}
+
 @media (max-width: 540px) {
   .right {
     display: none;
