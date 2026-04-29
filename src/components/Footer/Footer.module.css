@@ -34,3 +34,49 @@
   width: 14px;
   height: 14px;
 }
+
+.contact {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.contactItem {
+  color: inherit;
+  opacity: 0.85;
+}
+
+.divider {
+  opacity: 0.4;
+}
+
+.phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: inherit;
+  text-decoration: none;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  transition: color 160ms ease;
+}
+
+.phone:hover,
+.phone:focus-visible {
+  color: var(--color-gold, #b8893c);
+  text-decoration: none;
+}
+
+.phone svg {
+  width: 14px;
+  height: 14px;
+}
+
+@media (max-width: 640px) {
+  .contact {
+    justify-content: center;
+    text-align: center;
+  }
+}

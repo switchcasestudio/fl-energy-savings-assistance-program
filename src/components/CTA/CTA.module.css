@@ -128,3 +128,76 @@
   padding-bottom: 1rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
+
+.phoneCard {
+  margin-top: 28px;
+  padding: 20px 24px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  max-width: 380px;
+}
+
+.phoneCardLabel {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-gold, #b8893c);
+  margin-bottom: 8px;
+}
+
+.phoneCardLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+  transition: color 160ms ease;
+}
+
+.phoneCardLink:hover,
+.phoneCardLink:focus-visible {
+  color: var(--color-gold, #b8893c);
+}
+
+.phoneCardIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(184, 137, 60, 0.15);
+  color: var(--color-gold, #b8893c);
+  flex-shrink: 0;
+}
+
+.phoneCardIcon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.phoneCardNumber {
+  font-family: var(--font-serif, 'Fraunces', Georgia, serif);
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+}
+
+.phoneCardHours {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 8px;
+}
+
+@media (max-width: 640px) {
+  .phoneCard {
+    margin-top: 24px;
+    padding: 16px 18px;
+  }
+  .phoneCardNumber {
+    font-size: 24px;
+  }
+}

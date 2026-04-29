@@ -80,6 +80,27 @@
   color: var(--paper);
 }
 
+/* PHONE LINK */
+
+.phone {
+  display: inline-block;
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.phone:hover {
+  color: var(--color-gold, #b8893c);
+}
+
+.phone:focus-visible {
+  color: var(--color-gold, #b8893c);
+  outline: none;
+}
+
+/* MOBILE */
+
 @media (max-width: 640px) {
   .labelLong {
     display: none;
@@ -90,6 +111,7 @@
   .name {
     font-size: 0.95rem;
   }
+
   .sub {
     font-size: 0.65rem;
   }

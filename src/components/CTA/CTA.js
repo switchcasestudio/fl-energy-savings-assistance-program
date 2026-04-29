@@ -1,6 +1,11 @@
+import { Phone } from '../icons/Icons.js';
 import ContactForm from '../ContactForm/ContactForm.js';
 import useReveal from '../../hooks/useReveal.js';
+import { trackEvent } from '../../lib/analytics.js';
 import styles from './CTA.module.css';
+
+const PHONE_DISPLAY = '866-627-9518';
+const PHONE_HREF = 'tel:8666279518';
 
 function CTA() {
   const leftRef = useReveal({ delay: 0 });
@@ -19,7 +24,6 @@ function CTA() {
             reach out within one business day to confirm availability and find
             the option that fits.
           </p>
-
           <ul className={styles.bullets}>
             <li>
               <span className={styles.bulletDot} aria-hidden="true" />
@@ -34,6 +38,23 @@ function CTA() {
               Florida homeowners only
             </li>
           </ul>
+
+          <div className={styles.phoneCard}>
+            <div className={styles.phoneCardLabel}>Prefer to talk?</div>
+            <a
+              href={PHONE_HREF}
+              className={styles.phoneCardLink}
+              aria-label={`Call us at ${PHONE_DISPLAY}`}
+            >
+              <span className={styles.phoneCardIcon} aria-hidden="true">
+                <Phone />
+              </span>
+              <span className={styles.phoneCardNumber}>{PHONE_DISPLAY}</span>
+            </a>
+            <div className={styles.phoneCardHours}>
+              Mon–Fri, 9 AM – 6 PM ET · No obligation
+            </div>
+          </div>
         </div>
 
         <aside ref={rightRef} className={styles.panel}>
