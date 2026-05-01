@@ -20,6 +20,7 @@ function encode(data) {
 const initialState = {
   name: '',
   email: '',
+  phone: '',
   zip: '',
   program: '',
   message: '',
@@ -34,6 +35,7 @@ function ContactForm() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues((v) => ({ ...v, [name]: value }));
+
     if (errors[name]) {
       setErrors((errs) => ({ ...errs, [name]: null }));
     }
@@ -41,34 +43,57 @@ function ContactForm() {
 
   const validate = () => {
     const next = {};
-    if (!values.name.trim()) next.name = 'Please enter your name.';
+
+    if (!values.name.trim()) {
+      next.name = 'Please enter your name.';
+    }
+
     if (!values.email.trim()) {
       next.email = 'Please enter your email.';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
       next.email = 'Please enter a valid email.';
     }
+
+    if (!values.phone.trim()) {
+      next.phone = 'Please enter your phone number.';
+    } else if (!/^[\d\s()+.-]{7,20}$/.test(values.phone.trim())) {
+      next.phone = 'Please enter a valid phone number.';
+    }
+
     if (!values.zip.trim()) {
       next.zip = 'Please enter your ZIP code.';
     } else if (!/^\d{5}$/.test(values.zip.trim())) {
       next.zip = 'ZIP must be 5 digits.';
     }
-    if (!values.program) next.program = 'Please select a program.';
+
+    if (!values.program) {
+      next.program = 'Please select a program.';
+    }
+
     return next;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const validation = validate();
+
     if (Object.keys(validation).length > 0) {
       setErrors(validation);
+
       // Move focus to first invalid field for accessibility
       const firstError = Object.keys(validation)[0];
       const el = document.querySelector(`[name="${firstError}"]`);
-      if (el) el.focus();
+
+      if (el) {
+        el.focus();
+      }
+
       return;
     }
 
     setStatus('submitting');
+
     try {
       const response = await fetch('/', {
         method: 'POST',
@@ -76,13 +101,17 @@ function ContactForm() {
         body: encode({ 'form-name': 'contact', ...values }),
       });
 
-      if (!response.ok) throw new Error(`Network error: ${response.status}`);
+      if (!response.ok) {
+        throw new Error(`Network error: ${response.status}`);
+      }
 
       setStatus('success');
+
       trackEvent('form_submission', {
         form_name: 'contact',
         program: values.program,
       });
+
       setValues(initialState);
     } catch (err) {
       console.error('Form submission failed:', err);
@@ -115,6 +144,7 @@ function ContactForm() {
     >
       {/* Hidden inputs required by Netlify */}
       <input type="hidden" name="form-name" value="contact" />
+
       <p hidden>
         <label>
           Don't fill this out:{' '}
@@ -136,6 +166,7 @@ function ContactForm() {
           autoComplete="name"
           required
         />
+
         <Field
           label="Email"
           type="email"
@@ -150,6 +181,19 @@ function ContactForm() {
 
       <div className={styles.row}>
         <Field
+          label="Phone number"
+          type="tel"
+          name="phone"
+          value={values.phone}
+          onChange={handleChange}
+          error={errors.phone}
+          autoComplete="tel"
+          inputMode="tel"
+          placeholder="(555) 555-5555"
+          required
+        />
+
+        <Field
           label="Florida ZIP code"
           name="zip"
           value={values.zip}
@@ -160,21 +204,24 @@ function ContactForm() {
           maxLength={5}
           required
         />
-        <SelectField
-          label="Program of interest"
-          name="program"
-          value={values.program}
-          onChange={handleChange}
-          error={errors.program}
-          options={PROGRAM_OPTIONS}
-          required
-        />
       </div>
+
+      <SelectField
+        label="Program of interest"
+        name="program"
+        value={values.program}
+        onChange={handleChange}
+        error={errors.program}
+        options={PROGRAM_OPTIONS}
+        required
+      />
 
       <div className={styles.field}>
         <label className={styles.label} htmlFor="message">
-          Tell us about your project <span className={styles.optional}>(optional)</span>
+          Tell us about your project{' '}
+          <span className={styles.optional}>(optional)</span>
         </label>
+
         <textarea
           id="message"
           name="message"
@@ -208,16 +255,23 @@ function ContactForm() {
   );
 }
 
-/* ------------ Sub-components (kept in file — only used here) ------------ */
+/* ------------ Sub-components (kept in file, only used here) ------------ */
 
 function Field({ label, name, error, required, ...inputProps }) {
   const id = `field-${name}`;
+
   return (
     <div className={styles.field}>
       <label className={styles.label} htmlFor={id}>
         {label}
-        {required && <span className={styles.required} aria-hidden="true"> *</span>}
+        {required && (
+          <span className={styles.required} aria-hidden="true">
+            {' '}
+            *
+          </span>
+        )}
       </label>
+
       <input
         id={id}
         name={name}
@@ -226,6 +280,7 @@ function Field({ label, name, error, required, ...inputProps }) {
         aria-describedby={error ? `${id}-err` : undefined}
         {...inputProps}
       />
+
       {error && (
         <span id={`${id}-err`} className={styles.errorText}>
           {error}
@@ -235,18 +290,34 @@ function Field({ label, name, error, required, ...inputProps }) {
   );
 }
 
-function SelectField({ label, name, error, required, options, ...selectProps }) {
+function SelectField({
+  label,
+  name,
+  error,
+  required,
+  options,
+  ...selectProps
+}) {
   const id = `field-${name}`;
+
   return (
     <div className={styles.field}>
       <label className={styles.label} htmlFor={id}>
         {label}
-        {required && <span className={styles.required} aria-hidden="true"> *</span>}
+        {required && (
+          <span className={styles.required} aria-hidden="true">
+            {' '}
+            *
+          </span>
+        )}
       </label>
+
       <select
         id={id}
         name={name}
-        className={`${styles.input} ${styles.select} ${error ? styles.inputError : ''}`}
+        className={`${styles.input} ${styles.select} ${
+          error ? styles.inputError : ''
+        }`}
         aria-invalid={!!error}
         aria-describedby={error ? `${id}-err` : undefined}
         {...selectProps}
@@ -257,6 +328,7 @@ function SelectField({ label, name, error, required, options, ...selectProps }) 
           </option>
         ))}
       </select>
+
       {error && (
         <span id={`${id}-err`} className={styles.errorText}>
           {error}
