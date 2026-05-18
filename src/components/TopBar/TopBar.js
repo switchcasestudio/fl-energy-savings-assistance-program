@@ -1,4 +1,5 @@
 import { useT } from '../../i18n/LanguageContext.js';
+import ReactCountryFlag from 'react-country-flag';
 import styles from './TopBar.module.css';
 
 const PHONE_DISPLAY = '866-627-9518';
@@ -17,19 +18,31 @@ function TopBar() {
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
           <span className={styles.right}>{t('topBar.rightText')}</span>
           <div role="group" aria-label={t('topBar.langToggle.aria')} className={styles.langToggle}>
+            
             <button
               type="button"
               className={`${styles.langBtn} ${lang === 'en' ? styles.langActive : ''}`}
               aria-pressed={lang === 'en'}
               onClick={() => setLang('en')}
-            >{t('topBar.langToggle.en')}</button>
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}
+            >
+              <ReactCountryFlag countryCode="US" svg title="US Flag" />
+              {t('topBar.langToggle.en')}
+            </button>
+
             <span className={styles.langSep} aria-hidden="true">|</span>
+            
             <button
               type="button"
               className={`${styles.langBtn} ${lang === 'es' ? styles.langActive : ''}`}
               aria-pressed={lang === 'es'}
               onClick={() => setLang('es')}
-            >{t('topBar.langToggle.es')}</button>
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}
+            >
+              <ReactCountryFlag countryCode="ES" svg title="Spain Flag" />
+              {t('topBar.langToggle.es')}
+            </button>
+
           </div>
         </div>
       </div>
