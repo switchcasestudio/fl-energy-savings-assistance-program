@@ -1,3 +1,4 @@
+import { useT } from '../../i18n/LanguageContext.js';
 import { Phone } from '../icons/Icons.js';
 import ContactForm from '../ContactForm/ContactForm.js';
 import useReveal from '../../hooks/useReveal.js';
@@ -8,6 +9,7 @@ const PHONE_DISPLAY = '866-627-9518';
 const PHONE_HREF = 'tel:8666279518';
 
 function CTA() {
+  const { t } = useT();
   const leftRef = useReveal({ delay: 0 });
   const rightRef = useReveal({ delay: 120 });
 
@@ -15,36 +17,34 @@ function CTA() {
     <section className={styles.cta} id="contact">
       <div className={`container ${styles.inner}`}>
         <div ref={leftRef} className={styles.copy}>
-          <span className={`eyebrow ${styles.eyebrow}`}>Get Started</span>
+          <span className={`eyebrow ${styles.eyebrow}`}>{t('cta.eyebrow')}</span>
           <h2 className={styles.title}>
-            Want to upgrade your <em>Florida home?</em> We're here to help.
+            {t('cta.titlePart1')} <em>{t('cta.titleEm')}</em>{t('cta.titlePart2')}
           </h2>
           <p className={styles.sub}>
-            Tell us a little about your project and a program specialist will
-            reach out within one business day to confirm availability and find
-            the option that fits.
+            {t('cta.sub')}
           </p>
           <ul className={styles.bullets}>
             <li>
               <span className={styles.bulletDot} aria-hidden="true" />
-              No obligation — eligibility check only
+              {t('cta.bullet1')}
             </li>
             <li>
               <span className={styles.bulletDot} aria-hidden="true" />
-              Response within one business day
+              {t('cta.bullet2')}
             </li>
             <li>
               <span className={styles.bulletDot} aria-hidden="true" />
-              Florida homeowners only
+              {t('cta.bullet3')}
             </li>
           </ul>
 
           <div className={styles.phoneCard}>
-            <div className={styles.phoneCardLabel}>Prefer to talk?</div>
+            <div className={styles.phoneCardLabel}>{t('cta.phoneLabel')}</div>
             <a
               href={PHONE_HREF}
               className={styles.phoneCardLink}
-              aria-label={`Call us at ${PHONE_DISPLAY}`}
+              aria-label={`${t('cta.phoneAria')} ${PHONE_DISPLAY}`}
             >
               <span className={styles.phoneCardIcon} aria-hidden="true">
                 <Phone />
@@ -52,13 +52,13 @@ function CTA() {
               <span className={styles.phoneCardNumber}>{PHONE_DISPLAY}</span>
             </a>
             <div className={styles.phoneCardHours}>
-              Mon–Fri, 9 AM – 6 PM ET · No obligation
+              {t('cta.phoneHours')}
             </div>
           </div>
         </div>
 
         <aside ref={rightRef} className={styles.panel}>
-          <div className={styles.panelEyebrow}>Check your eligibility</div>
+          <div className={styles.panelEyebrow}>{t('cta.panelEyebrow')}</div>
           <ContactForm />
         </aside>
       </div>

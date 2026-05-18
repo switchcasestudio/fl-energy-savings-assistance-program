@@ -48,3 +48,38 @@
     display: none;
   }
 }
+
+/* ... KEEP YOUR EXISTING CSS UNCHANGED, JUST APPEND THIS ... */
+
+.langToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+}
+.langBtn {
+  background: none;
+  border: none;
+  padding: 0.25rem 0.35rem;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  opacity: 0.65;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: opacity 160ms ease;
+}
+.langBtn:hover,
+.langBtn:focus-visible {
+  opacity: 1;
+  outline: none;
+}
+.langActive {
+  opacity: 1;
+  font-weight: 600;
+}
+.langSep {
+  opacity: 0.4;
+  user-select: none;
+}

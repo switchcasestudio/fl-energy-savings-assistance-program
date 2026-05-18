@@ -1,3 +1,4 @@
+import { LanguageProvider } from './i18n/LanguageContext.js';
 import TopBar from './components/TopBar/TopBar.js';
 import Header from './components/Header/Header.js';
 import Hero from './components/Hero/Hero.js';
@@ -9,7 +10,7 @@ import Analytics from './components/Analytics/Analytics.js';
 
 function App() {
   return (
-    <>
+    <LanguageProvider>
       <Analytics />
       <TopBar />
       <Header />
@@ -20,7 +21,7 @@ function App() {
         <CTA />
       </main>
       <Footer />
-    </>
+    </LanguageProvider>
   );
 }
 

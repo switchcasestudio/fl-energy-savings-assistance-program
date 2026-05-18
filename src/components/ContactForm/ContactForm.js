@@ -1,14 +1,7 @@
 import { useState } from 'react';
+import { useT } from '../../i18n/LanguageContext.js';
 import { trackEvent } from '../../lib/analytics.js';
 import styles from './ContactForm.module.css';
-
-const PROGRAM_OPTIONS = [
-  { value: '', label: 'Select a program' },
-  { value: 'Program One', label: 'Program One — up to $25,000 funding' },
-  { value: 'Program Two', label: 'Program Two — up to $55,000 funding' },
-  { value: 'Program Three', label: 'Program Three — up to $100,000 funding' },
-  { value: 'Not sure', label: 'Not sure — help me decide' },
-];
 
 // Encode form data the way Netlify expects (application/x-www-form-urlencoded)
 function encode(data) {
@@ -28,6 +21,9 @@ const initialState = {
 };
 
 function ContactForm() {
+  const { t } = useT();
+  const PROGRAM_OPTIONS = t('contactForm.options');
+
   const [values, setValues] = useState(initialState);
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState('idle'); // idle | submitting | success | error
@@ -45,29 +41,29 @@ function ContactForm() {
     const next = {};
 
     if (!values.name.trim()) {
-      next.name = 'Please enter your name.';
+      next.name = t('contactForm.validation.name');
     }
 
     if (!values.email.trim()) {
-      next.email = 'Please enter your email.';
+      next.email = t('contactForm.validation.emailReq');
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
-      next.email = 'Please enter a valid email.';
+      next.email = t('contactForm.validation.emailInv');
     }
 
     if (!values.phone.trim()) {
-      next.phone = 'Please enter your phone number.';
+      next.phone = t('contactForm.validation.phoneReq');
     } else if (!/^[\d\s()+.-]{7,20}$/.test(values.phone.trim())) {
-      next.phone = 'Please enter a valid phone number.';
+      next.phone = t('contactForm.validation.phoneInv');
     }
 
     if (!values.zip.trim()) {
-      next.zip = 'Please enter your ZIP code.';
+      next.zip = t('contactForm.validation.zipReq');
     } else if (!/^\d{5}$/.test(values.zip.trim())) {
-      next.zip = 'ZIP must be 5 digits.';
+      next.zip = t('contactForm.validation.zipInv');
     }
 
     if (!values.program) {
-      next.program = 'Please select a program.';
+      next.program = t('contactForm.validation.program');
     }
 
     return next;
@@ -123,10 +119,9 @@ function ContactForm() {
     return (
       <div className={styles.success} role="status" aria-live="polite">
         <div className={styles.successBadge}>✓</div>
-        <h3 className={styles.successTitle}>Application received.</h3>
+        <h3 className={styles.successTitle}>{t('contactForm.successTitle')}</h3>
         <p className={styles.successBody}>
-          A program specialist will reach out within one business day to confirm
-          eligibility and next steps.
+          {t('contactForm.successBody')}
         </p>
       </div>
     );
@@ -147,7 +142,7 @@ function ContactForm() {
 
       <p hidden>
         <label>
-          Don't fill this out:{' '}
+          {t('contactForm.botLabel')}
           <input
             name="bot-field"
             value={values['bot-field']}
@@ -158,7 +153,7 @@ function ContactForm() {
 
       <div className={styles.row}>
         <Field
-          label="Full name"
+          label={t('contactForm.labels.name')}
           name="name"
           value={values.name}
           onChange={handleChange}
@@ -168,7 +163,7 @@ function ContactForm() {
         />
 
         <Field
-          label="Email"
+          label={t('contactForm.labels.email')}
           type="email"
           name="email"
           value={values.email}
@@ -181,7 +176,7 @@ function ContactForm() {
 
       <div className={styles.row}>
         <Field
-          label="Phone number"
+          label={t('contactForm.labels.phone')}
           type="tel"
           name="phone"
           value={values.phone}
@@ -189,12 +184,12 @@ function ContactForm() {
           error={errors.phone}
           autoComplete="tel"
           inputMode="tel"
-          placeholder="(555) 555-5555"
+          placeholder={t('contactForm.placeholders.phone')}
           required
         />
 
         <Field
-          label="Florida ZIP code"
+          label={t('contactForm.labels.zip')}
           name="zip"
           value={values.zip}
           onChange={handleChange}
@@ -207,7 +202,7 @@ function ContactForm() {
       </div>
 
       <SelectField
-        label="Program of interest"
+        label={t('contactForm.labels.program')}
         name="program"
         value={values.program}
         onChange={handleChange}
@@ -218,8 +213,8 @@ function ContactForm() {
 
       <div className={styles.field}>
         <label className={styles.label} htmlFor="message">
-          Tell us about your project{' '}
-          <span className={styles.optional}>(optional)</span>
+          {t('contactForm.labels.message')}{' '}
+          <span className={styles.optional}>{t('contactForm.labels.optional')}</span>
         </label>
 
         <textarea
@@ -229,13 +224,13 @@ function ContactForm() {
           onChange={handleChange}
           rows={4}
           className={styles.textarea}
-          placeholder="Solar panels, HVAC replacement, new windows…"
+          placeholder={t('contactForm.placeholders.message')}
         />
       </div>
 
       {status === 'error' && (
         <div className={styles.errorBanner} role="alert">
-          Something went wrong. Please try again or refresh the page.
+          {t('contactForm.errorBanner')}
         </div>
       )}
 
@@ -244,12 +239,11 @@ function ContactForm() {
         className={styles.submit}
         disabled={status === 'submitting'}
       >
-        {status === 'submitting' ? 'Sending…' : 'Check my eligibility'}
+        {status === 'submitting' ? t('contactForm.buttons.sending') : t('contactForm.buttons.submit')}
       </button>
 
       <p className={styles.disclaimer}>
-        By submitting, you agree to be contacted by a program specialist. Your
-        information is never sold.
+        {t('contactForm.disclaimer')}
       </p>
     </form>
   );

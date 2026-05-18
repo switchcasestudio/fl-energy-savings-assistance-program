@@ -1,7 +1,9 @@
+import { useT } from '../../i18n/LanguageContext.js';
 import useReveal from '../../hooks/useReveal.js';
 import styles from './Hero.module.css';
 
 function Hero() {
+  const { t } = useT();
   const eyebrowRef = useReveal({ delay: 0 });
   const titleRef = useReveal({ delay: 100 });
   const ledeRef = useReveal({ delay: 200 });
@@ -13,14 +15,13 @@ function Hero() {
       <div className={`container ${styles.inner}`}>
         <div>
           <span ref={eyebrowRef} className="eyebrow">
-            Florida Homeowner Programs
+            {t('hero.eyebrow')}
           </span>
           <h1 ref={titleRef} className={styles.title}>
-            Upgrade your home <em>with our programs.</em>
+            {t('hero.titlePart1')} <em>{t('hero.titleEm')}</em>
           </h1>
           <p ref={ledeRef} className={styles.lede}>
-            Three programs that help Florida homeowners achieve the projects
-            they want - with $0 down, 100% financing, and grants up to $8,000.
+            {t('hero.lede')}
           </p>
 
           <div ref={metaRef} className={styles.meta}>
@@ -28,17 +29,17 @@ function Hero() {
               <span className={styles.metaNum}>
                 <span>$</span>0
               </span>
-              <span className={styles.metaLabel}>Down payment</span>
+              <span className={styles.metaLabel}>{t('hero.metaDown')}</span>
             </div>
             <div className={styles.metaItem}>
               <span className={styles.metaNum}>
                 100<span>%</span>
               </span>
-              <span className={styles.metaLabel}>Financing available</span>
+              <span className={styles.metaLabel}>{t('hero.metaFinancing')}</span>
             </div>
             <div className={styles.metaItem}>
               <span className={styles.metaNum}>3</span>
-              <span className={styles.metaLabel}>Tailored programs</span>
+              <span className={styles.metaLabel}>{t('hero.metaPrograms')}</span>
             </div>
           </div>
         </div>
@@ -47,7 +48,7 @@ function Hero() {
           <div className={styles.img} />
           {/* <span className={styles.stamp}>Program Verified</span> */}
           <figcaption className={styles.caption}>
-            Solar, HVAC, windows &amp; insulation - all eligible upgrades.
+            {t('hero.caption')}
           </figcaption>
         </figure>
       </div>

@@ -1,3 +1,4 @@
+import { useT } from '../../i18n/LanguageContext.js';
 import { Phone, Shield } from '../icons/Icons.js';
 import { trackEvent } from '../../lib/analytics.js';
 import styles from './Footer.module.css';
@@ -6,6 +7,7 @@ const PHONE_DISPLAY = '866-627-9518';
 const PHONE_HREF = 'tel:8666279518';
 
 function Footer() {
+  const { t } = useT();
   const year = new Date().getFullYear();
 
   const handlePhoneClick = () => {
@@ -19,10 +21,10 @@ function Footer() {
           <span className={styles.seal} aria-hidden="true">
             <Shield />
           </span>
-          © {year} Florida Energy Assistance
+          © {year} {t('footer.brandName')}
         </div>
         <div className={styles.contact}>
-          <span className={styles.contactItem}>No obligation</span>
+          <span className={styles.contactItem}>{t('footer.noObligation')}</span>
           <span className={styles.divider} aria-hidden="true">
             ·
           </span>
@@ -30,7 +32,7 @@ function Footer() {
             href={PHONE_HREF}
             className={styles.phone}
             onClick={handlePhoneClick}
-            aria-label={`Call us at ${PHONE_DISPLAY}`}
+            aria-label={`${t('footer.phoneAria')} ${PHONE_DISPLAY}`}
           >
             <Phone />
             {PHONE_DISPLAY}
@@ -38,7 +40,7 @@ function Footer() {
           <span className={styles.divider} aria-hidden="true">
             ·
           </span>
-          <span className={styles.contactItem}>Mon–Fri, 9 AM – 6 PM ET</span>
+          <span className={styles.contactItem}>{t('footer.hours')}</span>
         </div>
       </div>
     </footer>

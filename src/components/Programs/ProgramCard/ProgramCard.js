@@ -1,8 +1,10 @@
+import { useT } from '../../../i18n/LanguageContext.js';
 import { iconMap } from '../../icons/Icons.js';
 import useReveal from '../../../hooks/useReveal.js';
 import styles from './ProgramCard.module.css';
 
 function ProgramCard({ program, index }) {
+  const { t } = useT();
   const ref = useReveal({ delay: index * 90 });
   const Icon = iconMap[program.icon];
 
@@ -29,11 +31,11 @@ function ProgramCard({ program, index }) {
 
       <div className={styles.pillars}>
         <div className={styles.pillar}>
-          <span className={styles.pillarLabel}>Up to in funding</span>
+          <span className={styles.pillarLabel}>{t('programCard.fundingLabel')}</span>
           <span className={styles.pillarNum}>{program.funding}</span>
         </div>
         <div className={`${styles.pillar} ${styles.pillarGrant}`}>
-          <span className={styles.pillarLabel}>Up to in grant</span>
+          <span className={styles.pillarLabel}>{t('programCard.grantLabel')}</span>
           <span className={styles.pillarNum}>{program.grant}</span>
         </div>
       </div>
