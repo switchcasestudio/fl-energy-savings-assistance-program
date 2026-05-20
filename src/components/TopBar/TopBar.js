@@ -2,8 +2,8 @@ import { useT } from '../../i18n/LanguageContext.js';
 import ReactCountryFlag from 'react-country-flag';
 import styles from './TopBar.module.css';
 
-const PHONE_DISPLAY = '866-627-9518';
-const PHONE_HREF = 'tel:8666279518';
+const PHONE_DISPLAY = '855-549-3521';
+const PHONE_HREF = 'tel:8555493521';
 
 function TopBar() {
   const { lang, setLang, t } = useT();

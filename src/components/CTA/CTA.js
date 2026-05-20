@@ -5,8 +5,8 @@ import useReveal from '../../hooks/useReveal.js';
 import { trackEvent } from '../../lib/analytics.js';
 import styles from './CTA.module.css';
 
-const PHONE_DISPLAY = '866-627-9518';
-const PHONE_HREF = 'tel:8666279518';
+const PHONE_DISPLAY = '855-549-3521';
+const PHONE_HREF = 'tel:8555493521';
 
 function CTA() {
   const { t } = useT();
