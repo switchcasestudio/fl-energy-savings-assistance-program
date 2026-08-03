@@ -1,0 +1,19 @@
+{
+  "name": "Florida Energy Assistance",
+  "short_name": "FL Energy",
+  "description": "Home energy upgrade programs for Florida homeowners. $0 down, 100% financing, grants up to $8,000.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "background_color": "#f7f4ec",
+  "theme_color": "#0a2540",
+  "lang": "en-US",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

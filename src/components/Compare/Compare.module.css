@@ -1,0 +1,89 @@
+.section {
+  padding: clamp(3rem, 6vw, 5rem) 0;
+  background: var(--paper);
+  border-top: 1px solid var(--rule);
+}
+
+.title {
+  font-family: var(--serif);
+  font-size: var(--fs-h2);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 0 0 clamp(1.5rem, 3vw, 2.25rem);
+  max-width: 42rem;
+}
+
+/* Wide tables scroll inside their own box — the page body never scrolls sideways */
+.scroller {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  background: var(--paper-2);
+}
+
+.table {
+  width: 100%;
+  min-width: 46rem;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.caption {
+  text-align: left;
+  padding: 1rem 1.25rem;
+  color: var(--ink-soft);
+  font-size: var(--fs-small);
+  border-bottom: 1px solid var(--rule);
+}
+
+.table thead th {
+  text-align: left;
+  padding: 0.875rem 1.25rem;
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 600;
+  border-bottom: 1px solid var(--rule);
+  white-space: nowrap;
+}
+
+.table tbody tr + tr th,
+.table tbody tr + tr td {
+  border-top: 1px solid var(--rule);
+}
+
+.table td,
+.table tbody th {
+  padding: 1.125rem 1.25rem;
+  vertical-align: top;
+  color: var(--ink-soft);
+}
+
+.rowHead {
+  text-align: left;
+  font-weight: 600;
+  color: var(--ink);
+  min-width: 14rem;
+}
+
+.link {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold-soft);
+}
+
+.link:hover {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+  font-weight: 500;
+  white-space: nowrap;
+}

@@ -1,6 +1,10 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useT } from '../../i18n/LanguageContext.js';
 import { trackEvent } from '../../lib/analytics.js';
+import { getAttributionFields, ALL_HIDDEN_FIELD_NAMES } from '../../lib/attribution.js';
+import { thanksPath } from '../../lib/site.js';
+import { useRouter } from '../../router/Router.js';
+import { programs } from '../../data/programs.js';
 import styles from './ContactForm.module.css';
 
 // Encode form data the way Netlify expects (application/x-www-form-urlencoded)
@@ -21,16 +25,26 @@ const initialState = {
 };
 
 function ContactForm() {
-  const { t } = useT();
+  const { lang, t } = useT();
+  const { navigate } = useRouter();
   const PROGRAM_OPTIONS = t('contactForm.options');
 
   const [values, setValues] = useState(initialState);
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState('idle'); // idle | submitting | success | error
+  const startedRef = useRef(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues((v) => ({ ...v, [name]: value }));
+
+    // form_start fires once per session on first interaction. Without it you
+    // can measure submits but not abandonment, so you cannot tell a traffic
+    // quality problem from a form usability problem.
+    if (!startedRef.current) {
+      startedRef.current = true;
+      trackEvent('form_start', { form_name: 'contact' });
+    }
 
     if (errors[name]) {
       setErrors((errs) => ({ ...errs, [name]: null }));
@@ -90,25 +104,40 @@ function ContactForm() {
 
     setStatus('submitting');
 
+    const attribution = getAttributionFields();
+    const selected = (programs[lang] || programs.en).find((p) => p.title === values.program);
+
     try {
       const response = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: encode({ 'form-name': 'contact', ...values }),
+        body: encode({ 'form-name': 'contact', ...values, ...attribution, lang }),
       });
 
       if (!response.ok) {
         throw new Error(`Network error: ${response.status}`);
       }
 
-      setStatus('success');
-
+      // `value` lets Google Ads optimize toward the higher-tier programs
+      // instead of treating a $25k and a $100k lead as identical conversions.
       trackEvent('form_submission', {
         form_name: 'contact',
         program: values.program,
+        value: selected ? selected.fundingValue : 0,
+        currency: 'USD',
+        lang,
+        gclid: attribution.gclid || undefined,
+        utm_source: attribution.utm_source || undefined,
+        utm_campaign: attribution.utm_campaign || undefined,
       });
 
+      setStatus('success');
       setValues(initialState);
+
+      // Route to the dedicated conversion URL so Google Ads / Meta URL-based
+      // conversion actions fire. Delayed a tick so the dataLayer push above is
+      // dispatched before the navigation.
+      window.setTimeout(() => navigate(thanksPath(lang)), 150);
     } catch (err) {
       console.error('Form submission failed:', err);
       setStatus('error');
@@ -139,6 +168,13 @@ function ContactForm() {
     >
       {/* Hidden inputs required by Netlify */}
       <input type="hidden" name="form-name" value="contact" />
+
+      {/* Attribution fields. Values are filled at submit time from
+          getAttributionFields(); these exist so Netlify records the columns
+          and so a no-JS submit still posts the right shape. */}
+      {ALL_HIDDEN_FIELD_NAMES.map((name) => (
+        <input key={name} type="hidden" name={name} defaultValue="" />
+      ))}
 
       <p hidden>
         <label>

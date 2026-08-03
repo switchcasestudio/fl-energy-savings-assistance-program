@@ -2,20 +2,48 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#0a2540" />
+
+    <!--
+      Everything between these markers is REPLACED at build time by
+      prerender.js with the per-route title, description, canonical,
+      hreflang, Open Graph, Twitter and JSON-LD tags.
+      The tags below are the dev-server fallback only — do not rely on them.
+      Edit the real values in src/lib/seo.js.
+    -->
+    <!--seo-head-start-->
+    <title>Florida Home Energy Programs | $0 Down, Grants to $8,000</title>
     <meta
       name="description"
-      content="Three programs that help Florida homeowners achieve the projects they want. $0 down, 100% financing, grants up to $8,000."
+      content="Three home energy upgrade programs for Florida homeowners. $0 down, 100% financing, and grants up to $8,000 for solar, HVAC, windows, and insulation."
     />
-    <title>Florida Energy Assistance</title>
+    <!--seo-head-end-->
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!--
+      Fonts load non-render-blocking: the browser paints in the fallback stack
+      immediately and swaps when the webfont arrives, instead of holding first
+      paint on a third-party request. `display=swap` is already in the URL, and
+      the weight list is trimmed to the six weights the CSS actually uses.
+    -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter+Tight:wght@400;500;600;700&display=swap"
       rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter+Tight:wght@400;500;600;700&display=swap"
+      media="print"
+      onload="this.media='all';this.onload=null;"
     />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter+Tight:wght@400;500;600;700&display=swap"
+      />
+    </noscript>
   </head>
   <body>
     <!--
@@ -23,6 +51,10 @@
       Netlify scans HTML at build-time; React forms render at runtime, so a hidden
       static copy with matching field names is required for SPA form handling.
       Do NOT remove. The actual submission happens via the React component.
+
+      The attribution fields must stay in sync with ALL_HIDDEN_FIELD_NAMES in
+      src/lib/attribution.js — a field missing here is silently dropped by
+      Netlify even though the browser posted it.
     -->
     <form
       name="contact"
@@ -39,6 +71,27 @@
       <input type="text" name="program" />
       <textarea name="message"></textarea>
       <input type="text" name="bot-field" />
+
+      <!-- Attribution / campaign fields -->
+      <input type="text" name="gclid" />
+      <input type="text" name="wbraid" />
+      <input type="text" name="gbraid" />
+      <input type="text" name="msclkid" />
+      <input type="text" name="fbclid" />
+      <input type="text" name="ttclid" />
+      <input type="text" name="utm_source" />
+      <input type="text" name="utm_medium" />
+      <input type="text" name="utm_campaign" />
+      <input type="text" name="utm_term" />
+      <input type="text" name="utm_content" />
+      <input type="text" name="utm_id" />
+      <input type="text" name="first_touch_source" />
+      <input type="text" name="first_touch_campaign" />
+      <input type="text" name="first_touch_at" />
+      <input type="text" name="landing_page" />
+      <input type="text" name="referrer" />
+      <input type="text" name="page_path" />
+      <input type="text" name="lang" />
     </form>
 
     <div id="root"></div>

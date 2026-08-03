@@ -4,6 +4,14 @@ import { useEffect, useRef } from 'react';
  * Reveals an element when it scrolls into view by toggling
  * the `io-hidden` / `io-visible` classes defined in global.css.
  *
+ * Elements already inside the viewport when this runs are left alone.
+ *
+ * That guard matters now that pages are prerendered: the server-rendered HTML
+ * paints immediately, and the old behaviour then added `io-hidden` on
+ * hydration — blanking content the user could already see and fading it back
+ * in after the transition delay. For the hero that meant repainting the LCP
+ * element up to ~1.1s late, which is what Core Web Vitals would score as LCP.
+ *
  * @param {object} options
  * @param {number} [options.threshold=0.15]
  * @param {string} [options.rootMargin='0px 0px -40px 0px']
@@ -20,6 +28,13 @@ export default function useReveal({
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
+
+    const rect = node.getBoundingClientRect();
+    const alreadyVisible = rect.top < window.innerHeight && rect.bottom > 0;
+    if (alreadyVisible) {
+      node.classList.add('io-visible');
+      return;
+    }
 
     if (delay) {
       node.style.transitionDelay = `${delay}ms`;

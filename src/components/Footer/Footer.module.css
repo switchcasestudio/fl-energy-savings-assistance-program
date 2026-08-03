@@ -6,6 +6,58 @@
   font-size: 0.875rem;
 }
 
+.columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  padding-bottom: 2rem;
+  margin-bottom: 1.75rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.colTitle {
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  font-weight: 600;
+  margin: 0 0 0.875rem;
+}
+
+.linkList,
+.countyList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.countyList {
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+}
+
+.link {
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: color 0.18s ease;
+}
+
+.link:hover {
+  color: var(--gold);
+}
+
+.disclaimer {
+  margin: 1.75rem 0 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.75rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  opacity: 0.85;
+  max-width: 64rem;
+}
+
 .inner {
   display: flex;
   justify-content: space-between;
@@ -72,6 +124,12 @@
 .phone svg {
   width: 14px;
   height: 14px;
+}
+
+@media (max-width: 780px) {
+  .columns {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 640px) {

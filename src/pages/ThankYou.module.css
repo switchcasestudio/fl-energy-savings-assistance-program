@@ -1,0 +1,87 @@
+.wrap {
+  padding: clamp(4rem, 10vw, 8rem) 0;
+  background: var(--paper);
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+}
+
+.inner {
+  max-width: 40rem;
+  text-align: center;
+}
+
+.badge {
+  width: 3.25rem;
+  height: 3.25rem;
+  margin: 0 auto 1.5rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--seal-soft);
+  color: var(--seal);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.title {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 0 0 1rem;
+}
+
+.body {
+  color: var(--ink-soft);
+  line-height: 1.7;
+  margin: 0 0 2rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.4rem;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.phone:hover {
+  background: var(--ink-2);
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.8rem 1.4rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.back:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.hours {
+  font-size: var(--fs-small);
+  color: var(--ink-soft);
+  margin: 0;
+}

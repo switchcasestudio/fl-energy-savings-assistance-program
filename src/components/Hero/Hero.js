@@ -1,5 +1,6 @@
 import { useT } from '../../i18n/LanguageContext.js';
 import useReveal from '../../hooks/useReveal.js';
+import { HERO_IMAGE } from '../../lib/media.js';
 import styles from './Hero.module.css';
 
 function Hero() {
@@ -44,12 +45,20 @@ function Hero() {
           </div>
         </div>
 
-        <figure ref={figureRef} className={styles.figure} aria-hidden="true">
-          <div className={styles.img} />
-          {/* <span className={styles.stamp}>Program Verified</span> */}
-          <figcaption className={styles.caption}>
-            {t('hero.caption')}
-          </figcaption>
+        <figure ref={figureRef} className={styles.figure}>
+          <img
+            className={styles.img}
+            src={HERO_IMAGE.src}
+            srcSet={HERO_IMAGE.srcSet}
+            sizes={HERO_IMAGE.sizes}
+            width={HERO_IMAGE.width}
+            height={HERO_IMAGE.height}
+            alt={t('hero.imageAlt')}
+            fetchpriority="high"
+            decoding="async"
+          />
+          <span className={styles.scrim} aria-hidden="true" />
+          <figcaption className={styles.caption}>{t('hero.caption')}</figcaption>
         </figure>
       </div>
     </section>

@@ -8,12 +8,13 @@ function Programs() {
   const list = programs[lang] || programs.en;
 
   return (
-    <section className={styles.programs} id="programs">
+    <section className={styles.programs} id="programs" aria-labelledby="programs-title">
       <div className="container">
         <div className={styles.head}>
-          <h2 className={styles.headTitle}>
+          <h2 id="programs-title" className={styles.headTitle}>
             {t('programs.title')}
           </h2>
+          <p className={styles.headIntro}>{t('programs.intro')}</p>
         </div>
 
         <div className={styles.grid}>

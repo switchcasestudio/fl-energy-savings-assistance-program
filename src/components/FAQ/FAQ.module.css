@@ -1,0 +1,89 @@
+.faq {
+  padding: clamp(3.5rem, 7vw, 6rem) 0;
+  background: var(--paper-2);
+  border-top: 1px solid var(--rule);
+}
+
+.head {
+  max-width: 46rem;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.title {
+  font-family: var(--serif);
+  font-size: var(--fs-h2);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 0 0 0.75rem;
+}
+
+.intro {
+  color: var(--ink-soft);
+  margin: 0;
+  max-width: 42rem;
+}
+
+.list {
+  max-width: 52rem;
+  border-top: 1px solid var(--rule);
+}
+
+.item {
+  border-bottom: 1px solid var(--rule);
+}
+
+.q {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.125rem 0;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--ink);
+  font-size: 1.0625rem;
+  line-height: 1.45;
+  list-style: none;
+}
+
+.q::-webkit-details-marker {
+  display: none;
+}
+
+.q:hover {
+  color: var(--gold);
+}
+
+.q:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.chev {
+  flex: none;
+  width: 0.75rem;
+  height: 0.75rem;
+  margin-top: 0.4rem;
+  border-right: 2px solid var(--rule-strong);
+  border-bottom: 2px solid var(--rule-strong);
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.item[open] .chev {
+  transform: rotate(-135deg);
+  border-color: var(--gold);
+}
+
+.a {
+  padding: 0 0 1.375rem;
+  max-width: 46rem;
+}
+
+.a p {
+  margin: 0;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}

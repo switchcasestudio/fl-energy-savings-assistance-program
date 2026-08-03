@@ -54,6 +54,51 @@ export function Phone(props) {
   );
 }
 
+/* --------------------------------------------------------------------- *
+ * Flags — inline, simplified.
+ *
+ * These replace `react-country-flag`, which fetched both flags from
+ * cdn.jsdelivr.net on every page load: two render-blocking third-party
+ * requests, in the header, for 16px decorative images. Inline SVG costs
+ * ~400 bytes and zero requests.
+ * --------------------------------------------------------------------- */
+
+const flagProps = {
+  width: '1.05em',
+  height: '1.05em',
+  viewBox: '0 0 24 18',
+  'aria-hidden': 'true',
+  focusable: 'false',
+  style: { display: 'inline-block', verticalAlign: '-0.15em', borderRadius: '1px' },
+};
+
+export function FlagUS(props) {
+  return (
+    <svg {...flagProps} {...props}>
+      <rect width="24" height="18" fill="#fff" />
+      <g fill="#b22234">
+        <rect width="24" height="1.385" y="0" />
+        <rect width="24" height="1.385" y="2.77" />
+        <rect width="24" height="1.385" y="5.54" />
+        <rect width="24" height="1.385" y="8.31" />
+        <rect width="24" height="1.385" y="11.08" />
+        <rect width="24" height="1.385" y="13.85" />
+        <rect width="24" height="1.385" y="16.62" />
+      </g>
+      <rect width="10" height="9.7" fill="#3c3b6e" />
+    </svg>
+  );
+}
+
+export function FlagES(props) {
+  return (
+    <svg {...flagProps} {...props}>
+      <rect width="24" height="18" fill="#c60b1e" />
+      <rect width="24" height="9" y="4.5" fill="#ffc400" />
+    </svg>
+  );
+}
+
 // Map icon name -> component (used by ProgramCard)
 export const iconMap = {
   shield: Shield,

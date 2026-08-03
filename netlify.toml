@@ -5,7 +5,74 @@
 [build.environment]
   NODE_VERSION = "20"
 
+# ---------------------------------------------------------------------------
+# Canonical host
+#
+# Without this, the same content is reachable on the Netlify subdomain and on
+# the apex/www variants. Every one of those is a separate URL to a crawler, and
+# links or AI citations landing on the wrong host build authority for a
+# hostname you do not want ranking.
+# ---------------------------------------------------------------------------
+[[redirects]]
+  from = "https://www.floridaenergyassistance.com/*"
+  to = "https://floridaenergyassistance.com/:splat"
+  status = 301
+  force = true
+
+# ---------------------------------------------------------------------------
+# SPA fallback
+#
+# Netlify serves matching static files BEFORE evaluating redirects, so every
+# prerendered page (dist/programs/<slug>/index.html, dist/florida/<slug>/…)
+# is served as real HTML. This rule only catches genuinely unknown paths, and
+# it now returns 404 rather than the previous 200 rewrite — that rewrite made
+# every mistyped URL return a soft-200 shell, which lets Google index unlimited
+# junk URLs as duplicates of the home page.
+# ---------------------------------------------------------------------------
 [[redirects]]
   from = "/*"
-  to = "/index.html"
-  status = 200
+  to = "/404.html"
+  status = 404
+
+# ---------------------------------------------------------------------------
+# Headers
+# ---------------------------------------------------------------------------
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+
+# Hashed build assets are immutable — cache for a year.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# HTML must revalidate, or a deploy that fixes meta tags takes days to reach
+# anyone who already has the page cached.
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+    Content-Type = "application/xml; charset=utf-8"
+
+[[headers]]
+  for = "/robots.txt"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+    Content-Type = "text/plain; charset=utf-8"
+
+[[headers]]
+  for = "/llms.txt"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+    Content-Type = "text/plain; charset=utf-8"

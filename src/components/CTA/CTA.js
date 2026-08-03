@@ -3,10 +3,11 @@ import { Phone } from '../icons/Icons.js';
 import ContactForm from '../ContactForm/ContactForm.js';
 import useReveal from '../../hooks/useReveal.js';
 import { trackEvent } from '../../lib/analytics.js';
+import { SITE } from '../../lib/site.js';
 import styles from './CTA.module.css';
 
-const PHONE_DISPLAY = '855-549-3521';
-const PHONE_HREF = 'tel:8555493521';
+const PHONE_DISPLAY = SITE.phoneDisplay;
+const PHONE_HREF = SITE.phoneHref;
 
 function CTA() {
   const { t } = useT();
@@ -44,6 +45,7 @@ function CTA() {
             <a
               href={PHONE_HREF}
               className={styles.phoneCardLink}
+              onClick={() => trackEvent('phone_call_click', { location: 'cta' })}
               aria-label={`${t('cta.phoneAria')} ${PHONE_DISPLAY}`}
             >
               <span className={styles.phoneCardIcon} aria-hidden="true">

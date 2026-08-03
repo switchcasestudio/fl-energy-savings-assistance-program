@@ -1,10 +1,8 @@
-import { createContext, useContext, useEffect, useState, useCallback } from 'react';
+import { createContext, useContext, useEffect, useCallback, useMemo } from 'react';
 import { en } from './en.js';
 import { es } from './es.js';
 
 const DICTIONARIES = { en, es };
-const STORAGE_KEY = 'fl-energy-lang';
-const DEFAULT_LANG = 'en';
 
 const LanguageContext = createContext(null);
 
@@ -13,35 +11,24 @@ function resolve(dict, path) {
   return value == null ? path : value;
 }
 
-function detectInitialLang() {
-  if (typeof window === 'undefined') return DEFAULT_LANG;
-  const stored = window.localStorage.getItem(STORAGE_KEY);
-  if (stored === 'en' || stored === 'es') return stored;
-  const browser = (window.navigator.language || '').toLowerCase();
-  return browser.startsWith('es') ? 'es' : DEFAULT_LANG;
-}
-
-export function LanguageProvider({ children }) {
-  const [lang, setLangState] = useState(detectInitialLang);
-
+/**
+ * Language is derived from the URL, not from localStorage.
+ *
+ * This is the change that makes Spanish indexable: a client-side-only toggle
+ * means /es content has no URL, so it can never be crawled, ranked, or cited.
+ * The router resolves `lang` from the path and passes it down here; the
+ * toggle in TopBar navigates to the alternate URL instead of flipping state.
+ */
+export function LanguageProvider({ lang, children }) {
   useEffect(() => {
     document.documentElement.lang = lang;
-    try {
-      window.localStorage.setItem(STORAGE_KEY, lang);
-    } catch {}
   }, [lang]);
 
-  const setLang = useCallback((next) => {
-    if (next === 'en' || next === 'es') setLangState(next);
-  }, []);
+  const t = useCallback((path) => resolve(DICTIONARIES[lang] || en, path), [lang]);
 
-  const t = useCallback((path) => resolve(DICTIONARIES[lang], path), [lang]);
+  const value = useMemo(() => ({ lang, t }), [lang, t]);
 
-  return (
-    <LanguageContext.Provider value={{ lang, setLang, t }}>
-      {children}
-    </LanguageContext.Provider>
-  );
+  return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
 }
 
 export function useT() {

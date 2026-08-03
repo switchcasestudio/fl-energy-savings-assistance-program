@@ -1,0 +1,94 @@
+# Florida Energy Assistance — https://floridaenergyassistance.com
+
+# ---------------------------------------------------------------------------
+# Search crawlers
+# ---------------------------------------------------------------------------
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# ---------------------------------------------------------------------------
+# AI answer engines (GEO)
+#
+# These are listed explicitly rather than left to the wildcard because several
+# of them treat an absent explicit rule conservatively, and because being
+# quoted in ChatGPT / Claude / Perplexity / Google AI Overviews answers is a
+# primary acquisition channel for this site — not a side effect.
+#
+# Two distinct kinds of bot are allowed here:
+#   - Retrieval/citation bots (OAI-SearchBot, PerplexityBot, Claude-SearchBot,
+#     Applebot-Extended): these fetch pages to answer a live user question and
+#     cite the source. This is the traffic you want.
+#   - Training crawlers (GPTBot, ClaudeBot, Google-Extended, CCBot): these feed
+#     model training corpora. Allowing them makes the brand more likely to be
+#     recalled without a citation.
+# If you ever decide you want citations but not training use, disallow the
+# second group and keep the first.
+# ---------------------------------------------------------------------------
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+# ---------------------------------------------------------------------------
+# Everything else
+# ---------------------------------------------------------------------------
+User-agent: *
+Allow: /
+
+# Deliberately NOT disallowing /thank-you/ or ?gclid= / ?utm_ URLs here.
+# Those pages carry <meta name="robots" content="noindex"> and self-referencing
+# canonicals, and a crawler has to be allowed to fetch a page in order to read
+# those tags. Disallowing them in robots.txt would suppress the crawl, leave
+# the noindex unread, and let the URLs get indexed title-only — the exact
+# outcome the rule was meant to prevent.
+
+Sitemap: https://floridaenergyassistance.com/sitemap.xml

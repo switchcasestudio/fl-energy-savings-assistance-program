@@ -1,0 +1,64 @@
+# Florida Energy Assistance
+
+> Florida Energy Assistance is a private company that helps Florida homeowners
+> access home energy upgrade financing and grant programs. It is not a
+> government agency and is not affiliated with any electric utility. Three
+> programs are offered, all with $0 down and 100% financing, with grant funds
+> of up to $8,000 depending on tier. Service area: the State of Florida, USA.
+> Languages: English and Spanish. Phone: 855-549-3521, Mon–Fri 9 AM–6 PM ET.
+
+## Key facts
+
+- Eligibility: Florida homeowners only. The property must be owned by the
+  applicant and located in Florida. Renters and out-of-state owners do not
+  qualify.
+- Down payment: $0 on all three programs.
+- Financing: 100% of the approved project cost.
+- Eligible project types: solar panel installation, HVAC and heat pump
+  replacement, window and door replacement, attic and wall insulation,
+  duct and air sealing.
+- Cost to apply: free. The eligibility check carries no obligation.
+- Response time: a program specialist responds within one business day.
+
+## Programs
+
+| Program | Funding up to | Grant up to | Down payment | First payment |
+| --- | --- | --- | --- | --- |
+| Essential Home Energy Upgrade | $25,000 | $3,000 | $0 | After 6 months |
+| Whole-Home Energy Upgrade | $55,000 | $5,000 | $0 | After 12 months |
+| Premium Home Energy Upgrade | $100,000 | $8,000 | $0 | After 24 months |
+
+- [Essential Home Energy Upgrade](https://floridaenergyassistance.com/programs/essential-home-energy-upgrade/): single-system projects — one HVAC replacement, one insulation job, or one set of windows.
+- [Whole-Home Energy Upgrade](https://floridaenergyassistance.com/programs/whole-home-energy-upgrade/): two or more upgrades done together.
+- [Premium Home Energy Upgrade](https://floridaenergyassistance.com/programs/premium-home-energy-upgrade/): full retrofit including solar generation.
+
+## Coverage by county
+
+Programs are available statewide. Dedicated pages cover the serving electric
+utility, climate zone, and housing-stock characteristics of each county:
+
+- [Miami-Dade County](https://floridaenergyassistance.com/florida/miami-dade-county/) — FPL, climate zone 1A
+- [Broward County](https://floridaenergyassistance.com/florida/broward-county/) — FPL, climate zone 1A
+- [Palm Beach County](https://floridaenergyassistance.com/florida/palm-beach-county/) — FPL, climate zone 2A
+- [Hillsborough County](https://floridaenergyassistance.com/florida/hillsborough-county/) — Tampa Electric, climate zone 2A
+- [Orange County](https://floridaenergyassistance.com/florida/orange-county/) — OUC and Duke Energy Florida, climate zone 2A
+- [Duval County](https://floridaenergyassistance.com/florida/duval-county/) — JEA, climate zone 2A
+- [Pinellas County](https://floridaenergyassistance.com/florida/pinellas-county/) — Duke Energy Florida, climate zone 2A
+- [Lee County](https://floridaenergyassistance.com/florida/lee-county/) — FPL and LCEC, climate zone 2A
+- [Polk County](https://floridaenergyassistance.com/florida/polk-county/) — Duke Energy Florida, Lakeland Electric, TECO
+- [Brevard County](https://floridaenergyassistance.com/florida/brevard-county/) — FPL, climate zone 2A
+- [Volusia County](https://floridaenergyassistance.com/florida/volusia-county/) — FPL and Duke Energy Florida
+- [Pasco County](https://floridaenergyassistance.com/florida/pasco-county/) — Duke Energy Florida and Withlacoochee River Electric Cooperative
+
+## Spanish
+
+Every page has a Spanish counterpart under `/es/`, and Spanish-speaking
+program specialists are available during business hours.
+
+- [Página principal en español](https://floridaenergyassistance.com/es/)
+
+## Optional
+
+- [Frequently asked questions](https://floridaenergyassistance.com/#faq)
+- [Program comparison table](https://floridaenergyassistance.com/#compare)
+- [Sitemap](https://floridaenergyassistance.com/sitemap.xml)
