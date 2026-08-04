@@ -132,13 +132,28 @@ commit as the code change.
 - [ ] **Verify the FAQ answers** flagged `needsOwnerReview: true` in
       `src/data/faq.js`. They assert things about credit handling, program
       authorization, and grant mechanics that the original site never stated.
-- [ ] **Confirm the program names.** `Essential` / `Whole-Home` / `Premium` were
-      chosen to be searchable replacements for "Program One/Two/Three". If the
-      real names differ, change `title` in `src/data/programs.js` and the slugs
-      in `src/lib/site.js`.
+- [x] ~~Confirm the program names~~ — `Essential` / `Whole-Home` / `Premium`
+      confirmed. Change `title` in `src/data/programs.js` and the slugs in
+      `src/lib/site.js` if they are ever renamed.
 - [ ] **Opt-out handling** — the privacy policy directs opt-out requests to
       855-549-3521. Make sure whoever answers knows how to log and honour a
       deletion or do-not-sell request.
-- [ ] **Google Business Profile** — requires a verifiable address. Not
-      available without one; see notes on service-area eligibility.
 - [ ] **Self-host the hero image** — see the note in `src/lib/media.js`.
+
+### No physical address
+
+This business operates without a public street address, so the site is built
+for that deliberately — it is not a gap waiting to be filled:
+
+- The Organization schema in `src/lib/seo.js` uses `areaServed: Florida` with a
+  `ContactPoint`, which is the correct shape for an address-less statewide
+  service. Do not add a `PostalAddress` node or switch it to `LocalBusiness`.
+- Google Business Profile and the local map pack are out of scope. That costs
+  little here: the map pack returns results near the searcher, which never
+  suited a Miami-to-Jacksonville footprint.
+- Never substitute a P.O. box, mailbox service, virtual office, or coworking
+  address to qualify for a listing. It breaches Google's guidelines, and a
+  suspension is worse than not being listed.
+
+Acquisition runs on organic, paid search, and AI answer engines. None of the
+three depend on an address.
