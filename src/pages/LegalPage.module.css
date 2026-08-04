@@ -1,0 +1,104 @@
+.wrap {
+  padding: clamp(1.5rem, 4vw, 2.5rem) 0 clamp(3.5rem, 7vw, 5.5rem);
+  background: var(--paper);
+}
+
+.inner {
+  max-width: 46rem;
+}
+
+.head {
+  padding-bottom: 2rem;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.h1 {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin: 0 0 0.75rem;
+}
+
+.updated {
+  font-size: var(--fs-small);
+  color: var(--ink-soft);
+  margin: 0 0 1.5rem;
+  letter-spacing: 0.02em;
+}
+
+.intro {
+  color: var(--ink-soft);
+  line-height: 1.75;
+  margin: 0;
+}
+
+.section {
+  margin-bottom: 2.5rem;
+}
+
+.h2 {
+  font-family: var(--serif);
+  font-size: clamp(1.25rem, 2.1vw, 1.5rem);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin: 0 0 0.875rem;
+}
+
+.section p {
+  color: var(--ink-soft);
+  line-height: 1.78;
+  margin: 0 0 1rem;
+}
+
+.section p:last-child {
+  margin-bottom: 0;
+}
+
+.list {
+  margin: 0 0 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.list li {
+  position: relative;
+  padding: 0 0 0 1.375rem;
+  margin-bottom: 0.625rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+
+.list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.65rem;
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+.cross {
+  margin: 3rem 0 0;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--rule);
+}
+
+.crossLink {
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold-soft);
+}
+
+.crossLink:hover {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
+}

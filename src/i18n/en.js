@@ -151,7 +151,13 @@ export const en = {
       sending: 'Sending…',
       submit: 'Check my eligibility'
     },
-    disclaimer: 'By submitting, you agree to be contacted by a program specialist. Your information is never sold.'
+    consent: {
+      before: 'By submitting this form, you agree to the ',
+      terms: 'Terms of Service',
+      middle: ' and ',
+      privacy: 'Privacy Policy',
+      after: ', and you give your express written consent for Florida Energy Assistance and participating program providers to contact you at the phone number and email address you provided \u2014 including by automatic telephone dialing system, prerecorded or artificial voice, and text message \u2014 about home energy upgrade programs. Consent is not a condition of any purchase. Message and data rates may apply. Reply STOP to opt out.'
+    }
   },
   thanks: {
     title: 'Application received.',
@@ -165,6 +171,11 @@ export const en = {
     backHome: 'Back to home',
     checkCta: 'Check eligibility'
   },
+  legal: {
+    updated: 'Last updated',
+    privacyLink: 'Read the Privacy Policy',
+    termsLink: 'Read the Terms of Service'
+  },
   footer: {
     brandName: 'Florida Energy Assistance',
     noObligation: 'No obligation',
@@ -172,6 +183,9 @@ export const en = {
     hours: 'Mon–Fri, 9 AM – 6 PM ET',
     programsTitle: 'Programs',
     countiesTitle: 'Florida counties',
+    legalTitle: 'Legal',
+    privacy: 'Privacy Policy',
+    terms: 'Terms of Service',
     disclaimer:
       'Florida Energy Assistance is a private company that helps Florida homeowners access home energy upgrade financing and grant programs. It is not a government agency and is not affiliated with any electric utility. Program availability, funding amounts, and grant amounts are subject to eligibility and approval.'
   }

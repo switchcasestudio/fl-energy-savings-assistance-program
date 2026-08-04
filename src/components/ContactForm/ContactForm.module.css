@@ -212,3 +212,13 @@
     transform: translateY(0);
   }
 }
+
+.disclaimerLink {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.disclaimerLink:hover {
+  color: var(--gold);
+}

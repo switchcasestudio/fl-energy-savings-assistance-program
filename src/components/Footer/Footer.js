@@ -1,6 +1,6 @@
 import { useT } from '../../i18n/LanguageContext.js';
 import { Link } from '../../router/Router.js';
-import { homePath, programPath, countyPath, SITE } from '../../lib/site.js';
+import { homePath, programPath, countyPath, privacyPath, termsPath, SITE } from '../../lib/site.js';
 import { programs } from '../../data/programs.js';
 import { counties } from '../../data/counties.js';
 import { Phone, Shield } from '../icons/Icons.js';
@@ -32,6 +32,22 @@ function Footer() {
                   </Link>
                 </li>
               ))}
+            </ul>
+          </div>
+
+          <div className={styles.col}>
+            <h2 className={styles.colTitle}>{t('footer.legalTitle')}</h2>
+            <ul className={styles.linkList}>
+              <li>
+                <Link to={privacyPath(lang)} className={styles.link}>
+                  {t('footer.privacy')}
+                </Link>
+              </li>
+              <li>
+                <Link to={termsPath(lang)} className={styles.link}>
+                  {t('footer.terms')}
+                </Link>
+              </li>
             </ul>
           </div>
 

@@ -106,7 +106,25 @@ duplicate-content problems: every page carries a self-referencing canonical.
 
 ---
 
-## 6. Still to do (needs assets or business input)
+## 6. Consent and disclosure
+
+The eligibility form carries express written consent for autodialed,
+prerecorded and SMS contact, with "consent is not a condition of any purchase"
+and STOP instructions. Both the TCPA and Florida's own telephone solicitation
+statute apply to every lead this form produces, since all of them are Florida
+numbers. Do not shorten that block to make the form look tidier.
+
+The privacy policy describes referral sharing with participating providers as
+potentially constituting a sale or sharing under state privacy law, and offers
+an opt-out. This replaced the old "your information is never sold" line on the
+form, which did not match how the business actually works.
+
+If the referral arrangement changes, update `src/data/legal.js` in the same
+commit as the code change.
+
+---
+
+## 7. Still to do (needs assets or business input)
 
 - [x] ~~`/public/og-image.png`, `/public/logo.png`, `/public/apple-touch-icon.png`~~
       Generated. Source markup is in `scripts/*.html`; re-render with `npm run og`
@@ -118,9 +136,9 @@ duplicate-content problems: every page carries a self-referencing canonical.
       chosen to be searchable replacements for "Program One/Two/Three". If the
       real names differ, change `title` in `src/data/programs.js` and the slugs
       in `src/lib/site.js`.
-- [ ] **Business address** — if there is a public office, add `address` to the
-      Organization node in `src/lib/seo.js` and switch it to `LocalBusiness`.
-      That unlocks local pack eligibility, which a bare Organization cannot get.
-- [ ] **Google Business Profile** — the single biggest local-SEO lever not
-      available from the codebase.
+- [ ] **Opt-out handling** — the privacy policy directs opt-out requests to
+      855-549-3521. Make sure whoever answers knows how to log and honour a
+      deletion or do-not-sell request.
+- [ ] **Google Business Profile** — requires a verifiable address. Not
+      available without one; see notes on service-area eligibility.
 - [ ] **Self-host the hero image** — see the note in `src/lib/media.js`.

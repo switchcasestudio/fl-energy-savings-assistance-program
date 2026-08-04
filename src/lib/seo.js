@@ -43,6 +43,16 @@ const META = {
       title: 'Application received | Florida Energy Assistance',
       description: 'Your eligibility check was received. A program specialist will reach out within one business day.',
     },
+    privacy: {
+      title: 'Privacy Policy | Florida Energy Assistance',
+      description:
+        'What Florida Energy Assistance collects, how we use it, who we share it with, and how to exercise your privacy rights under the Florida Digital Bill of Rights.',
+    },
+    terms: {
+      title: 'Terms of Service | Florida Energy Assistance',
+      description:
+        'Terms governing use of floridaenergyassistance.com: eligibility, what we do and do not provide, consent to be contacted, and limitations of liability.',
+    },
     notFound: {
       title: 'Page not found | Florida Energy Assistance',
       description: 'The page you were looking for does not exist.',
@@ -68,6 +78,16 @@ const META = {
     thanks: {
       title: 'Solicitud recibida | Florida Energy Assistance',
       description: 'Recibimos su verificación de elegibilidad. Un especialista se comunicará dentro de un día hábil.',
+    },
+    privacy: {
+      title: 'Política de Privacidad | Florida Energy Assistance',
+      description:
+        'Qué información recopila Florida Energy Assistance, cómo la usamos, con quién la compartimos y cómo ejercer sus derechos de privacidad en Florida.',
+    },
+    terms: {
+      title: 'Términos de Servicio | Florida Energy Assistance',
+      description:
+        'Términos que rigen el uso de floridaenergyassistance.com: elegibilidad, qué ofrecemos y qué no, consentimiento para ser contactado y límites de responsabilidad.',
     },
     notFound: {
       title: 'Página no encontrada | Florida Energy Assistance',
@@ -319,6 +339,22 @@ export function buildHead(route) {
         })),
       },
     });
+    return { ...base, title, description, jsonLd: graph };
+  }
+
+  if (page === PAGE.PRIVACY || page === PAGE.TERMS) {
+    const key = page === PAGE.PRIVACY ? 'privacy' : 'terms';
+    const title = m[key].title;
+    const description = m[key].description;
+    const crumbs = breadcrumbNode(
+      [
+        { name: lang === 'es' ? 'Inicio' : 'Home', path: homePath(lang) },
+        { name: title.split(' | ')[0], path },
+      ],
+      url
+    );
+    graph.push(crumbs);
+    graph.push(webPageNode({ url, title, description, lang, breadcrumbId: crumbs['@id'] }));
     return { ...base, title, description, jsonLd: graph };
   }
 

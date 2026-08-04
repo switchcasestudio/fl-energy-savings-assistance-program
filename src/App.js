@@ -11,6 +11,7 @@ import Home from './pages/Home.js';
 import ProgramPage from './pages/ProgramPage.js';
 import CountyPage from './pages/CountyPage.js';
 import ThankYou from './pages/ThankYou.js';
+import LegalPage from './pages/LegalPage.js';
 import NotFound from './pages/NotFound.js';
 
 function renderPage(route) {
@@ -23,6 +24,10 @@ function renderPage(route) {
       return <CountyPage countyId={route.params.countyId} />;
     case PAGE.THANKS:
       return <ThankYou />;
+    case PAGE.PRIVACY:
+      return <LegalPage doc="privacy" />;
+    case PAGE.TERMS:
+      return <LegalPage doc="terms" />;
     default:
       return <NotFound />;
   }

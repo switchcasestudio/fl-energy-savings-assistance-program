@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import { useT } from '../../i18n/LanguageContext.js';
 import { trackEvent } from '../../lib/analytics.js';
 import { getAttributionFields, ALL_HIDDEN_FIELD_NAMES } from '../../lib/attribution.js';
-import { thanksPath } from '../../lib/site.js';
+import { thanksPath, privacyPath, termsPath } from '../../lib/site.js';
 import { useRouter } from '../../router/Router.js';
 import { programs } from '../../data/programs.js';
 import styles from './ContactForm.module.css';
@@ -278,8 +278,21 @@ function ContactForm() {
         {status === 'submitting' ? t('contactForm.buttons.sending') : t('contactForm.buttons.submit')}
       </button>
 
+      {/* Express written consent for autodialed / prerecorded / SMS contact.
+          Required by the TCPA and by Florida's own telephone solicitation
+          statute, which applies to every lead this form produces since all of
+          them are Florida numbers. "Consent is not a condition of any
+          purchase" must stay — it is a required element, not filler. */}
       <p className={styles.disclaimer}>
-        {t('contactForm.disclaimer')}
+        {t('contactForm.consent.before')}
+        <a href={termsPath(lang)} className={styles.disclaimerLink}>
+          {t('contactForm.consent.terms')}
+        </a>
+        {t('contactForm.consent.middle')}
+        <a href={privacyPath(lang)} className={styles.disclaimerLink}>
+          {t('contactForm.consent.privacy')}
+        </a>
+        {t('contactForm.consent.after')}
       </p>
     </form>
   );

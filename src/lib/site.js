@@ -54,9 +54,16 @@ export const PROGRAM_SLUGS = {
  * Path builders — the ONLY place URL shapes are defined.
  * ------------------------------------------------------------------ */
 
+/**
+ * Date shown on the privacy policy and terms. Update whenever either
+ * document's substance changes — a stale "last updated" on a policy that has
+ * actually changed is worse than no date.
+ */
+export const LEGAL_UPDATED = '2026-08-03';
+
 const SEGMENT = {
-  en: { programs: 'programs', counties: 'florida', thanks: 'thank-you' },
-  es: { programs: 'programas', counties: 'florida', thanks: 'gracias' },
+  en: { programs: 'programs', counties: 'florida', thanks: 'thank-you', privacy: 'privacy', terms: 'terms' },
+  es: { programs: 'programas', counties: 'florida', thanks: 'gracias', privacy: 'privacidad', terms: 'terminos' },
 };
 
 export function homePath(lang) {
@@ -79,6 +86,14 @@ export function countyPath(lang, county) {
 
 export function thanksPath(lang) {
   return lang === 'es' ? `/es/${SEGMENT.es.thanks}/` : `/${SEGMENT.en.thanks}/`;
+}
+
+export function privacyPath(lang) {
+  return lang === 'es' ? `/es/${SEGMENT.es.privacy}/` : `/${SEGMENT.en.privacy}/`;
+}
+
+export function termsPath(lang) {
+  return lang === 'es' ? `/es/${SEGMENT.es.terms}/` : `/${SEGMENT.en.terms}/`;
 }
 
 export { SEGMENT };

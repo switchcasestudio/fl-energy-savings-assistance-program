@@ -151,7 +151,13 @@ export const es = {
       sending: 'Enviando…',
       submit: 'Verificar mi elegibilidad'
     },
-    disclaimer: 'Al enviar, usted acepta ser contactado por un especialista del programa. Su información nunca se vende.'
+    consent: {
+      before: 'Al enviar este formulario, usted acepta los ',
+      terms: 'T\u00e9rminos de Servicio',
+      middle: ' y la ',
+      privacy: 'Pol\u00edtica de Privacidad',
+      after: ', y otorga su consentimiento expreso por escrito para que Florida Energy Assistance y los proveedores de programas participantes se comuniquen con usted en el n\u00famero de tel\u00e9fono y el correo electr\u00f3nico que proporcion\u00f3 \u2014 incluso mediante sistema de marcaci\u00f3n telef\u00f3nica autom\u00e1tica, voz pregrabada o artificial, y mensaje de texto \u2014 sobre programas de mejoras energ\u00e9ticas del hogar. El consentimiento no es condici\u00f3n para ninguna compra. Pueden aplicarse tarifas de mensajes y datos. Responda STOP para excluirse.'
+    }
   },
   thanks: {
     title: 'Solicitud recibida.',
@@ -165,6 +171,11 @@ export const es = {
     backHome: 'Volver al inicio',
     checkCta: 'Verificar elegibilidad'
   },
+  legal: {
+    updated: 'Última actualización',
+    privacyLink: 'Leer la Política de Privacidad',
+    termsLink: 'Leer los Términos de Servicio'
+  },
   footer: {
     brandName: 'Florida Energy Assistance',
     noObligation: 'Sin compromiso',
@@ -172,6 +183,9 @@ export const es = {
     hours: 'Lun–Vie, 9 AM – 6 PM ET',
     programsTitle: 'Programas',
     countiesTitle: 'Condados de Florida',
+    legalTitle: 'Legal',
+    privacy: 'Política de Privacidad',
+    terms: 'Términos de Servicio',
     disclaimer:
       'Florida Energy Assistance es una empresa privada que ayuda a propietarios de vivienda en Florida a acceder a financiamiento y programas de subvención para mejoras energéticas del hogar. No es una agencia gubernamental y no está afiliada a ninguna empresa eléctrica. La disponibilidad de los programas, los montos de financiamiento y los montos de subvención están sujetos a elegibilidad y aprobación.'
   }

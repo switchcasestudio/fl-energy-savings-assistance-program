@@ -9,13 +9,23 @@
 
 import { counties } from '../data/counties.js';
 import { programs } from '../data/programs.js';
-import { PROGRAM_SLUGS, homePath, programPath, countyPath, thanksPath } from '../lib/site.js';
+import {
+  PROGRAM_SLUGS,
+  homePath,
+  programPath,
+  countyPath,
+  thanksPath,
+  privacyPath,
+  termsPath,
+} from '../lib/site.js';
 
 export const PAGE = {
   HOME: 'home',
   PROGRAM: 'program',
   COUNTY: 'county',
   THANKS: 'thanks',
+  PRIVACY: 'privacy',
+  TERMS: 'terms',
   NOT_FOUND: 'notFound',
 };
 
@@ -79,6 +89,14 @@ export function resolveRoute(pathname) {
     return { page: PAGE.THANKS, lang, params: {}, path, altPath: thanksPath(other) };
   }
 
+  // Legal
+  if (rest.length === 1 && rest[0] === (lang === 'es' ? 'privacidad' : 'privacy')) {
+    return { page: PAGE.PRIVACY, lang, params: {}, path, altPath: privacyPath(other) };
+  }
+  if (rest.length === 1 && rest[0] === (lang === 'es' ? 'terminos' : 'terms')) {
+    return { page: PAGE.TERMS, lang, params: {}, path, altPath: termsPath(other) };
+  }
+
   return { page: PAGE.NOT_FOUND, lang, params: {}, path, altPath: null };
 }
 
@@ -95,6 +113,9 @@ export function allRoutes() {
     for (const c of counties) {
       out.push({ path: countyPath(lang, c), lang, priority: 0.7, changefreq: 'monthly' });
     }
+
+    out.push({ path: privacyPath(lang), lang, priority: 0.3, changefreq: 'yearly' });
+    out.push({ path: termsPath(lang), lang, priority: 0.3, changefreq: 'yearly' });
 
     // Prerendered so the conversion page is a real URL, but noindex'd —
     // see seo.js. Excluded from the sitemap by the `noindex` flag.
