@@ -138,7 +138,8 @@ commit as the code change.
 - [ ] **Opt-out handling** — the privacy policy directs opt-out requests to
       855-549-3521. Make sure whoever answers knows how to log and honour a
       deletion or do-not-sell request.
-- [ ] **Self-host the hero image** — see the note in `src/lib/media.js`.
+- [x] ~~Self-host the hero image~~ — done. Files in `public/hero/`, regenerate
+      with `python3 scripts/hero-image.py`.
 
 ### No physical address
 

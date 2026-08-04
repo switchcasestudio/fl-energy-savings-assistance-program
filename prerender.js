@@ -83,14 +83,19 @@ function headTags(head) {
   return tags.map((t) => '    ' + t).join('\n');
 }
 
-/** Preload the LCP image so the fetch starts before the bundle is parsed. */
+/**
+ * Preload the LCP image so the fetch starts before the bundle is parsed.
+ *
+ * One preload per orientation, each gated by the same media query the
+ * <picture> uses — without `media` the browser would preload both crops and
+ * throw one away. `type` keeps browsers without WebP support from preloading
+ * a file they cannot decode; they fall back to the <picture> JPEG sources.
+ */
 function preloadTags(isHome) {
   if (!isHome) return '';
-  const out = HERO_IMAGE.preconnect.map(
-    (origin) => `    <link rel="preconnect" href="${origin}" crossorigin />`
-  );
-  out.push(
-    `    <link rel="preload" as="image" href="${HERO_IMAGE.src}" imagesrcset="${HERO_IMAGE.srcSet}" imagesizes="${HERO_IMAGE.sizes}" fetchpriority="high" />`
+  const out = [HERO_IMAGE.portrait, HERO_IMAGE.landscape].map(
+    (v) =>
+      `    <link rel="preload" as="image" type="image/webp" media="${v.media}" imagesrcset="${v.webp}" imagesizes="${v.sizes}" fetchpriority="high" />`
   );
   return '\n' + out.join('\n');
 }

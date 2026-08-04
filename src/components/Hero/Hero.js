@@ -46,17 +46,39 @@ function Hero() {
         </div>
 
         <figure ref={figureRef} className={styles.figure}>
-          <img
-            className={styles.img}
-            src={HERO_IMAGE.src}
-            srcSet={HERO_IMAGE.srcSet}
-            sizes={HERO_IMAGE.sizes}
-            width={HERO_IMAGE.width}
-            height={HERO_IMAGE.height}
-            alt={t('hero.imageAlt')}
-            fetchpriority="high"
-            decoding="async"
-          />
+          {/* Source order matters: the browser takes the first <source> whose
+              media and type both match, so WebP must precede JPEG within each
+              orientation. */}
+          <picture>
+            <source
+              media={HERO_IMAGE.portrait.media}
+              type="image/webp"
+              srcSet={HERO_IMAGE.portrait.webp}
+              sizes={HERO_IMAGE.portrait.sizes}
+            />
+            <source
+              media={HERO_IMAGE.portrait.media}
+              type="image/jpeg"
+              srcSet={HERO_IMAGE.portrait.jpg}
+              sizes={HERO_IMAGE.portrait.sizes}
+            />
+            <source
+              type="image/webp"
+              srcSet={HERO_IMAGE.landscape.webp}
+              sizes={HERO_IMAGE.landscape.sizes}
+            />
+            <img
+              className={styles.img}
+              src={HERO_IMAGE.fallback}
+              srcSet={HERO_IMAGE.landscape.jpg}
+              sizes={HERO_IMAGE.landscape.sizes}
+              width={HERO_IMAGE.width}
+              height={HERO_IMAGE.height}
+              alt={t('hero.imageAlt')}
+              fetchpriority="high"
+              decoding="async"
+            />
+          </picture>
           <span className={styles.scrim} aria-hidden="true" />
           <figcaption className={styles.caption}>{t('hero.caption')}</figcaption>
         </figure>

@@ -28,12 +28,17 @@ what makes the Spanish content indexable. Add a route by editing the route
 table in `src/router/routes.js`; the sitemap and prerender list read from it,
 so they cannot drift apart.
 
-## Brand images
+## Images
 
 `npm run og` re-renders `public/og-image.png` (1200×630 social card),
 `public/logo.png` (Organization JSON-LD) and `public/apple-touch-icon.png`
 from the HTML sources in `scripts/`, using local headless Chrome. Edit the
 HTML, re-run, commit the PNGs.
+
+The hero photo is self-hosted in `public/hero/` as two art-directed crops
+(portrait above 900px, landscape below) in WebP and JPEG. Regenerate with
+`python3 scripts/hero-image.py` — needs Pillow and cwebp, and is only used
+when the photo itself changes.
 
 See `SEM-SETUP.md` for analytics, conversion tracking, and the remaining
 business to-dos.

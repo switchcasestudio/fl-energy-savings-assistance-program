@@ -27,7 +27,7 @@ export const es = {
     metaFinancing: 'Financiamiento disponible',
     metaPrograms: 'Programas personalizados',
     caption: 'Solar, aire acondicionado, ventanas y aislamiento: todas son mejoras elegibles.',
-    imageAlt: 'Casa unifamiliar en Florida con paneles solares instalados en el techo'
+    imageAlt: 'Casa de dos plantas recién construida en Florida con porche cubierto, garaje para tres autos y paneles solares en el techo'
   },
   programs: {
     title: 'Tres programas de energía para el hogar en Florida. Un propósito: mejoras que realmente puede pagar.',

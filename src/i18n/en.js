@@ -27,7 +27,7 @@ export const en = {
     metaFinancing: 'Financing available',
     metaPrograms: 'Tailored programs',
     caption: 'Solar, HVAC, windows & insulation - all eligible upgrades.',
-    imageAlt: 'Florida single-family home with rooftop solar panels installed'
+    imageAlt: 'Newly built two-story Florida home with a covered front porch, three-car garage, and solar panels on the roof'
   },
   programs: {
     title: 'Three Florida home energy programs. One purpose: upgrades you can actually afford.',

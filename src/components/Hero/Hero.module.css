@@ -105,6 +105,11 @@
   }
 }
 
+/* <picture> is only a wrapper for source selection — keep it out of layout. */
+.figure picture {
+  display: contents;
+}
+
 /*
  * The LCP element. It is now a real <img>, not a CSS background.
  * A background-image cannot be preloaded, cannot carry fetchpriority,
