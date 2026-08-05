@@ -187,6 +187,6 @@ export const en = {
     privacy: 'Privacy Policy',
     terms: 'Terms of Service',
     disclaimer:
-      'Florida Energy Assistance is a private company that helps Florida homeowners access home energy upgrade financing and grant programs. It is not a government agency and is not affiliated with any electric utility. Program availability, funding amounts, and grant amounts are subject to eligibility and approval.'
+      'Florida Energy Assistance is a private company that helps Florida homeowners access home energy upgrade financing and grant programs. Program availability, funding amounts, and grant amounts are subject to eligibility and approval.'
   }
 };

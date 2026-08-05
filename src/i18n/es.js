@@ -187,6 +187,6 @@ export const es = {
     privacy: 'Política de Privacidad',
     terms: 'Términos de Servicio',
     disclaimer:
-      'Florida Energy Assistance es una empresa privada que ayuda a propietarios de vivienda en Florida a acceder a financiamiento y programas de subvención para mejoras energéticas del hogar. No es una agencia gubernamental y no está afiliada a ninguna empresa eléctrica. La disponibilidad de los programas, los montos de financiamiento y los montos de subvención están sujetos a elegibilidad y aprobación.'
+      'Florida Energy Assistance es una empresa privada que ayuda a propietarios de vivienda en Florida a acceder a financiamiento y programas de subvención para mejoras energéticas del hogar. La disponibilidad de los programas, los montos de financiamiento y los montos de subvención están sujetos a elegibilidad y aprobación.'
   }
 };
