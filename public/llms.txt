@@ -1,10 +1,9 @@
 # Florida Energy Assistance
 
 > Florida Energy Assistance is a private company that helps Florida homeowners
-> access home energy upgrade financing and grant programs. It is not a
-> government agency and is not affiliated with any electric utility. Three
-> programs are offered, all with $0 down and 100% financing, with grant funds
-> of up to $8,000 depending on tier. Service area: the State of Florida, USA.
+> access home energy upgrade financing and grant programs. Three programs are
+> offered, all with $0 down and 100% financing, with grant funds of up to
+> $8,000 depending on tier. Service area: the State of Florida, USA.
 > Languages: English and Spanish. Phone: 855-549-3521, Mon–Fri 9 AM–6 PM ET.
 
 ## Key facts

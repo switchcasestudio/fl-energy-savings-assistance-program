@@ -97,9 +97,9 @@ function Footer() {
           </div>
         </div>
 
-        {/* Explicit non-affiliation notice. Keep it — the site name reads as
-            governmental, and both Google's misrepresentation policy and the
-            Google Ads government-affiliation policy look for this disclaimer. */}
+        {/* Site-wide disclaimer. The non-affiliation sentence was removed from
+            this line by owner request; the full statement still appears in the
+            FAQ, the privacy policy, and the terms of service. */}
         <p className={styles.disclaimer}>{t('footer.disclaimer')}</p>
       </div>
     </footer>

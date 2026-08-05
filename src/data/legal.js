@@ -24,7 +24,7 @@ const privacyEn = {
       blocks: [
         {
           type: 'p',
-          text: 'Florida Energy Assistance is a private company that helps Florida homeowners identify and access home energy upgrade financing and grant programs. We are not a federal, state, county, or municipal agency, and we are not affiliated with any electric utility. We are not a lender, a contractor, or an installer.',
+          text: 'Florida Energy Assistance is a private company that helps Florida homeowners identify and access home energy upgrade financing and grant programs. We are not a lender, a contractor, or an installer.',
         },
       ],
     },
@@ -206,7 +206,7 @@ const privacyEs = {
       blocks: [
         {
           type: 'p',
-          text: 'Florida Energy Assistance es una empresa privada que ayuda a los propietarios de vivienda en Florida a identificar y acceder a financiamiento y programas de subvención para mejoras energéticas del hogar. No somos una agencia federal, estatal, del condado ni municipal, y no estamos afiliados a ninguna empresa eléctrica. No somos un prestamista, un contratista ni un instalador.',
+          text: 'Florida Energy Assistance es una empresa privada que ayuda a los propietarios de vivienda en Florida a identificar y acceder a financiamiento y programas de subvención para mejoras energéticas del hogar. No somos un prestamista, un contratista ni un instalador.',
         },
       ],
     },
@@ -394,7 +394,6 @@ const termsEn = {
         {
           type: 'ul',
           items: [
-            'We are not a government agency at any level, and we are not affiliated with any electric utility.',
             'We are not a lender, and we do not make credit decisions.',
             'We are not a contractor or installer, and we do not perform the work.',
             'We do not provide legal, tax, financial, or engineering advice.',
@@ -554,7 +553,6 @@ const termsEs = {
         {
           type: 'ul',
           items: [
-            'No somos una agencia gubernamental de ningún nivel, y no estamos afiliados a ninguna empresa eléctrica.',
             'No somos un prestamista y no tomamos decisiones de crédito.',
             'No somos un contratista ni un instalador, y no realizamos el trabajo.',
             'No brindamos asesoría legal, fiscal, financiera ni de ingeniería.',

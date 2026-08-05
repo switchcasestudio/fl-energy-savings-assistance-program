@@ -119,10 +119,9 @@ function organizationNode(lang) {
       alternateName: 'FL',
     },
     knowsLanguage: ['en-US', 'es-US'],
-    // Deliberately NOT GovernmentOrganization and NOT claiming a government
-    // affiliation. See the `government` FAQ entry — if the business does hold a
-    // formal state authorization, add it here as an `award` or `hasCredential`
-    // node with the issuing body named.
+    // Typed as a private Organization, not GovernmentOrganization. If the
+    // business does hold a formal state authorization, add it here as an
+    // `award` or `hasCredential` node with the issuing body named.
     description:
       lang === 'es'
         ? 'Empresa privada que ayuda a propietarios de vivienda en Florida a acceder a programas de financiamiento y subvenciones para mejoras energéticas del hogar.'

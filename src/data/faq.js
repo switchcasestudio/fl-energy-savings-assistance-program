@@ -59,12 +59,6 @@ const faqEn = [
     a: 'After you submit an eligibility check, a program specialist responds within one business day to confirm availability and identify the program that fits your project. Timeline from there depends on project scope and contractor scheduling.',
   },
   {
-    id: 'government',
-    q: 'Is this a government program?',
-    a: 'Florida Energy Assistance is a private company that helps Florida homeowners identify and access home energy upgrade financing and grant programs. It is not a federal, state, county, or municipal agency, and it is not affiliated with your electric utility. Utility and government programs may be available separately and can sometimes be combined with these offerings.',
-    needsOwnerReview: true,
-  },
-  {
     id: 'which-counties',
     q: 'Which Florida counties are covered?',
     a: 'Programs are available to homeowners statewide across Florida, including Miami-Dade, Broward, Palm Beach, Hillsborough, Orange, Duval, Pinellas, Lee, Polk, Brevard, Volusia, and Pasco counties. Because Florida spans two climate zones, the upgrades that save the most differ by region — cooling-focused work in South Florida, heat-pump replacement in North Florida where a real heating season exists.',
@@ -122,11 +116,6 @@ const faqEs = [
     id: 'how-long',
     q: '¿Cuánto tiempo toma el proceso?',
     a: 'Después de enviar una verificación de elegibilidad, un especialista del programa responde dentro de un día hábil para confirmar la disponibilidad e identificar el programa que se ajusta a su proyecto. El plazo a partir de ahí depende del alcance del proyecto y de la agenda del contratista.',
-  },
-  {
-    id: 'government',
-    q: '¿Es este un programa del gobierno?',
-    a: 'Florida Energy Assistance es una empresa privada que ayuda a los propietarios de Florida a identificar y acceder a financiamiento y programas de subvención para mejoras energéticas del hogar. No es una agencia federal, estatal, del condado ni municipal, y no está afiliada a su empresa eléctrica. Los programas de servicios públicos y del gobierno pueden estar disponibles por separado y en algunos casos pueden combinarse con estas ofertas.',
   },
   {
     id: 'which-counties',
