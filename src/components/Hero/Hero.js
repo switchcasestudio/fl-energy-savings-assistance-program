@@ -1,10 +1,12 @@
 import { useT } from '../../i18n/LanguageContext.js';
 import useReveal from '../../hooks/useReveal.js';
-import { HERO_IMAGE } from '../../lib/media.js';
+import useAmbientVideo from '../../hooks/useAmbientVideo.js';
+import { HERO_IMAGE, HERO_VIDEO } from '../../lib/media.js';
 import styles from './Hero.module.css';
 
 function Hero() {
   const { t } = useT();
+  const video = useAmbientVideo();
   const eyebrowRef = useReveal({ delay: 0 });
   const titleRef = useReveal({ delay: 100 });
   const ledeRef = useReveal({ delay: 200 });
@@ -79,6 +81,25 @@ function Hero() {
               decoding="async"
             />
           </picture>
+
+          {/* Decorative only — it shows the same house as the <img> above, so
+              it is hidden from assistive tech and the alt text is not
+              duplicated. No `autoplay` attribute: useAmbientVideo starts it,
+              and only when reduced motion is not requested. */}
+          <video
+            ref={video.ref}
+            className={`${styles.video} ${video.ready ? styles.videoReady : ''}`}
+            muted
+            loop
+            playsInline
+            preload="none"
+            tabIndex={-1}
+            aria-hidden="true"
+          >
+            <source src={HERO_VIDEO.webm} type="video/webm" />
+            <source src={HERO_VIDEO.mp4} type="video/mp4" />
+          </video>
+
           <span className={styles.scrim} aria-hidden="true" />
           <figcaption className={styles.caption}>{t('hero.caption')}</figcaption>
         </figure>

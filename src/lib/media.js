@@ -50,3 +50,26 @@ export const HERO_IMAGE = {
   width: 1200,
   height: 960,
 };
+
+/**
+ * Hero video. Layered *over* the still, never in place of it.
+ *
+ * The image above stays the LCP element: it is preloaded, art-directed per
+ * orientation, and carries the alt text. Swapping it for a <video poster="…">
+ * would have made the poster the LCP instead — a single un-art-directed file
+ * the preload scanner never sees, which is exactly the regression the comment
+ * in Hero.module.css describes climbing out of.
+ *
+ * So the video mounts transparent, loads only after the effect runs, and
+ * fades in when it actually starts playing. If it never loads — reduced
+ * motion, a blocked autoplay policy, a slow link — the still is already
+ * there and nothing about the layout shifts.
+ *
+ * 4:3 source, 10s, silent, and it ping-pongs (pushes in, pulls back out) so
+ * the loop point is seamless. `object-fit: cover` crops it to 4/5 above the
+ * breakpoint and 5/4 below, matching the figure in Hero.module.css.
+ */
+export const HERO_VIDEO = {
+  webm: `${DIR}/hero.webm`,
+  mp4: `${DIR}/hero.mp4`,
+};

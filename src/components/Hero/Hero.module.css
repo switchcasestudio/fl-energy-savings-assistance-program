@@ -128,6 +128,40 @@
   background: var(--rule);
 }
 
+/*
+ * Sits directly on top of .img and matches it exactly, so the fade-in is a
+ * crossfade between two identical framings rather than a visible swap.
+ * It stays below .scrim and .caption in stacking order — those are painted
+ * after it in the DOM — so the caption keeps its contrast over the video.
+ */
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: var(--radius-lg);
+  opacity: 0;
+  transition: opacity 700ms ease;
+  pointer-events: none;
+}
+
+.videoReady {
+  opacity: 1;
+}
+
+/*
+ * Belt and braces. useAmbientVideo already declines to load the file when
+ * reduced motion is requested, but if it ever plays anyway — a browser that
+ * changes the setting after load, say — this keeps it invisible.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .video {
+    display: none;
+  }
+}
+
 .scrim {
   position: absolute;
   inset: 0;
