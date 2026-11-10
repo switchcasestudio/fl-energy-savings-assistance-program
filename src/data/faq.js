@@ -72,7 +72,7 @@ const faqEn = [
   {
     id: 'how-apply',
     q: 'How do I apply?',
-    a: 'Complete the free eligibility check with your name, email, phone number, Florida ZIP code, and the program you are interested in — or select "help me decide" if you are unsure. A specialist reaches out within one business day. You can also call 855-549-3521 Monday through Friday, 9 AM to 6 PM Eastern. There is no obligation and no cost to check.',
+    a: 'Complete the free eligibility check with your name, email, phone number, Florida ZIP code, and the program you are interested in — or select "help me decide" if you are unsure. A specialist reaches out within one business day. You can also call 866-627-9518 Monday through Friday, 9 AM to 6 PM Eastern. There is no obligation and no cost to check.',
   },
 ];
 
@@ -130,7 +130,7 @@ const faqEs = [
   {
     id: 'how-apply',
     q: '¿Cómo puedo solicitar?',
-    a: 'Complete la verificación de elegibilidad gratuita con su nombre, correo electrónico, número de teléfono, código postal de Florida y el programa que le interesa, o seleccione "ayúdenme a decidir" si no está seguro. Un especialista se comunicará dentro de un día hábil. También puede llamar al 855-549-3521 de lunes a viernes, de 9 AM a 6 PM hora del Este. No hay obligación ni costo por verificar.',
+    a: 'Complete la verificación de elegibilidad gratuita con su nombre, correo electrónico, número de teléfono, código postal de Florida y el programa que le interesa, o seleccione "ayúdenme a decidir" si no está seguro. Un especialista se comunicará dentro de un día hábil. También puede llamar al 866-627-9518 de lunes a viernes, de 9 AM a 6 PM hora del Este. No hay obligación ni costo por verificar.',
   },
 ];
 

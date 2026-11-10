@@ -10,9 +10,9 @@ export const SITE_URL = 'https://floridaenergyassistance.com';
 export const SITE = {
   name: 'Florida Energy Assistance',
   legalName: 'Florida Energy Assistance',
-  phoneDisplay: '855-549-3521',
-  phoneE164: '+18555493521',
-  phoneHref: 'tel:+18555493521',
+  phoneDisplay: '866-627-9518',
+  phoneE164: '+18666279518',
+  phoneHref: 'tel:+18666279518',
   email: '',
   hoursText: 'Mon–Fri, 9 AM – 6 PM ET',
   // schema.org openingHours shorthand

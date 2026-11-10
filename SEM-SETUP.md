@@ -136,7 +136,7 @@ commit as the code change.
       confirmed. Change `title` in `src/data/programs.js` and the slugs in
       `src/lib/site.js` if they are ever renamed.
 - [ ] **Opt-out handling** — the privacy policy directs opt-out requests to
-      855-549-3521. Make sure whoever answers knows how to log and honour a
+      866-627-9518. Make sure whoever answers knows how to log and honour a
       deletion or do-not-sell request.
 - [x] ~~Self-host the hero image~~ — done. Files in `public/hero/`, regenerate
       with `python3 scripts/hero-image.py`.

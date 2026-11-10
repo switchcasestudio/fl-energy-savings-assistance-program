@@ -135,7 +135,7 @@ const privacyEn = {
         },
         {
           type: 'p',
-          text: 'To exercise any of these rights, or to opt out of the sale or sharing of your personal information, call 855-549-3521 or write to us using the contact details below. We will not discriminate against you for exercising a privacy right. If we decline a request, you may ask us to reconsider.',
+          text: 'To exercise any of these rights, or to opt out of the sale or sharing of your personal information, call 866-627-9518 or write to us using the contact details below. We will not discriminate against you for exercising a privacy right. If we decline a request, you may ask us to reconsider.',
         },
       ],
     },
@@ -189,7 +189,7 @@ const privacyEn = {
       blocks: [
         {
           type: 'p',
-          text: 'For any privacy question or request, call 855-549-3521, Monday through Friday, 9 AM to 6 PM Eastern.',
+          text: 'For any privacy question or request, call 866-627-9518, Monday through Friday, 9 AM to 6 PM Eastern.',
         },
       ],
     },
@@ -317,7 +317,7 @@ const privacyEs = {
         },
         {
           type: 'p',
-          text: 'Para ejercer cualquiera de estos derechos, o para excluirse de la venta o divulgación de su información personal, llame al 855-549-3521 o escríbanos a los datos de contacto que aparecen abajo. No lo discriminaremos por ejercer un derecho de privacidad. Si rechazamos una solicitud, puede pedirnos que la reconsideremos.',
+          text: 'Para ejercer cualquiera de estos derechos, o para excluirse de la venta o divulgación de su información personal, llame al 866-627-9518 o escríbanos a los datos de contacto que aparecen abajo. No lo discriminaremos por ejercer un derecho de privacidad. Si rechazamos una solicitud, puede pedirnos que la reconsideremos.',
         },
       ],
     },
@@ -371,7 +371,7 @@ const privacyEs = {
       blocks: [
         {
           type: 'p',
-          text: 'Para cualquier pregunta o solicitud sobre privacidad, llame al 855-549-3521, de lunes a viernes de 9 AM a 6 PM hora del Este.',
+          text: 'Para cualquier pregunta o solicitud sobre privacidad, llame al 866-627-9518, de lunes a viernes de 9 AM a 6 PM hora del Este.',
         },
       ],
     },
@@ -432,7 +432,7 @@ const termsEn = {
         },
         {
           type: 'p',
-          text: 'This consent is not a condition of purchasing any goods or services. Message and data rates may apply. Reply STOP to any text message to opt out, use the unsubscribe link in any email, or tell us during a call that you wish to be removed. You may also call 855-549-3521 to withdraw consent.',
+          text: 'This consent is not a condition of purchasing any goods or services. Message and data rates may apply. Reply STOP to any text message to opt out, use the unsubscribe link in any email, or tell us during a call that you wish to be removed. You may also call 866-627-9518 to withdraw consent.',
         },
       ],
     },
@@ -530,7 +530,7 @@ const termsEn = {
       blocks: [
         {
           type: 'p',
-          text: 'Questions about these terms: call 855-549-3521, Monday through Friday, 9 AM to 6 PM Eastern.',
+          text: 'Questions about these terms: call 866-627-9518, Monday through Friday, 9 AM to 6 PM Eastern.',
         },
       ],
     },
@@ -591,7 +591,7 @@ const termsEs = {
         },
         {
           type: 'p',
-          text: 'Este consentimiento no es condición para comprar ningún bien o servicio. Pueden aplicarse tarifas de mensajes y datos. Responda STOP a cualquier mensaje de texto para excluirse, use el enlace para darse de baja en cualquier correo, o indíquenos durante una llamada que desea ser eliminado. También puede llamar al 855-549-3521 para retirar su consentimiento.',
+          text: 'Este consentimiento no es condición para comprar ningún bien o servicio. Pueden aplicarse tarifas de mensajes y datos. Responda STOP a cualquier mensaje de texto para excluirse, use el enlace para darse de baja en cualquier correo, o indíquenos durante una llamada que desea ser eliminado. También puede llamar al 866-627-9518 para retirar su consentimiento.',
         },
       ],
     },
@@ -689,7 +689,7 @@ const termsEs = {
       blocks: [
         {
           type: 'p',
-          text: 'Preguntas sobre estos términos: llame al 855-549-3521, de lunes a viernes de 9 AM a 6 PM hora del Este.',
+          text: 'Preguntas sobre estos términos: llame al 866-627-9518, de lunes a viernes de 9 AM a 6 PM hora del Este.',
         },
       ],
     },
